@@ -1,2 +1,6 @@
 # data-engineers-manual
-work in progress on a textbook for entry level data engineers
+
+This is a book of notes for my data wrangling and data munging course at ASU.
+It may become a textbook for entry level data engineers eventually.
+
+I reserve my copyright to this work.
