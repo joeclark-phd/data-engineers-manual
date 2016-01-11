@@ -94,8 +94,8 @@ organization of my course, CIS 355.
 - Davenport, T. H., & Patil, D. J. (2012). Data Scientist: The Sexiest Job Of 
   the 21st Century. Harvard Business Review, 90(10), 70-76.
 - Driscoll, M. E. (2013?). let us now praise data engineers. Retrieved from
-  [http://medriscoll.com/post/49783223337/let-us-now-praise-data-engineers](
-  http://medriscoll.com).
+  [http://medriscoll.com](
+  http://medriscoll.com/post/49783223337/let-us-now-praise-data-engineers).
 - Jurney, R. (2014). Agile Data Science. Sebastopol, CA: O'Reilly.
 - Tamm, T., Seddon, P., & Shanks, G. (2013). Pathways to Value From Business 
   Analytics. Paper presented at ICIS 2013, Milan.
