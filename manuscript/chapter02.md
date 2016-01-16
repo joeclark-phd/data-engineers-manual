@@ -25,7 +25,8 @@ which we have no control.
 There are two major problems for data engineers to consider here. The
 first is how to make data available to other systems and to send, and receive
 data "messages" between them. I don't want to spoil Chapter 4 for you, but
-I'll tell you the short answer is "the Internet". The other major problem,
+I'll tell you the short answer to the first one is "the Internet". 
+The other major problem,
 and the subject of this chapter, is how to structure those data messages so
 that they accurately represent the data and are intelligible to the systems
 that receive them.
@@ -51,7 +52,7 @@ ASCII, UTF-8, or Unicode is commonly called "text" data, not because other
 formats couldn't represent text, but because these are open standards that
 can be interpreted by almost any system, transmitted over the Web, sent as
 e-mail, and so on. Every mainstream operating system has a built-in text
-editor{such as Notepad on Windows, or vi on most Unix platforms{that
+editor (such as Notepad on Windows, or vi on most Unix platforms) that
 can read and write text files.
 
 Not every piece of data is communicated in a text encoding. Non-textual
@@ -165,6 +166,7 @@ An example of some movie data in XML:
       </cast>
     </movie>
 
+You can see that XML is hierarchical and that we can "nest" objects and lists.
 The main drawback to XML is that it is extremely "wordy" resulting
 in large files that are difficult for humans to read, and not really ideal for
 computers to read, either. The best cases for using XML are when
@@ -185,13 +187,13 @@ movie data above, in JSON:
       "year": 2014,
       "rating": "PG-13",
       "crew": [
-        {"name": "Chrisopher Nolan", "role": "Director"},
-        {"name": "Hans Zimmer", "role": "Composer"},
-        ],
+                {"name": "Chrisopher Nolan", "role": "Director"},
+                {"name": "Hans Zimmer", "role": "Composer"},
+              ],
       "cast": [
-        {"name": "Matthew McConaghey", "role": "Coop"},
-        {"name": "Anne Hathaway", "role": "Brand"},
-        ]
+                {"name": "Matthew McConaghey", "role": "Coop"},
+                {"name": "Anne Hathaway", "role": "Brand"},
+              ]
     }
 
 Lightweight JSON messages are more efficient than XML (although less
@@ -220,8 +222,10 @@ with in the future.
 
 ## References & Recommended Reading
 
-- An absolutely hilarious student-produced video on data serialization with 
-  XML: https://youtu.be/kfVPLSj6Rqw
-  "Character Encoding", Wikipedia. https://en.wikipedia.org/wiki/Character_encoding
+- A *hilarious* student-produced video on data serialization with 
+  XML. https://youtu.be/kfVPLSj6Rqw
+  
+- "Character Encoding", Wikipedia. https://en.wikipedia.org/wiki/Character_encoding
+
 - Manoochehri, M. (2014). Data Just Right: Introduction to Large-Scale Data &
   Analytics.  Addison-Wesley.
