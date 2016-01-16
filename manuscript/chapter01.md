@@ -210,7 +210,7 @@ number was sales, which was returns, and so on.
 In addition to metadata, databases also need to present an interface to
 humans (and generally also to other software programs) by which they can
 access the data. For the past few decades, the best-known such interface
-is the structured query language SQL.[^7]. SQL has four main commands:
+is the structured query language SQL.[^7] SQL has four main commands:
 `INSERT`, `UPDATE`, and `DELETE`, which are used to manipulate data in the
 database, and `SELECT`, which is used to **query** the database, in other words,
 to request data for some purpose. Dialects of SQL with minor differences are

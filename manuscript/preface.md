@@ -1,12 +1,5 @@
 # Preface: Productizing Data
 
-## Chapter Objectives
-Explain the different ways analytics leads to value creation in business. 
-Define analytical systems (data products) and distinguish between the roles 
-of data scientist and data wrangler or data engineer.  Preview the hierarchy
-of skills that need to be learned to be effective as a data engineer, and
-the structure of the course.
-
 ## Analytics and Business Value
 
 Businesses can get value from data in more than one way.  A paper by Tamm and
