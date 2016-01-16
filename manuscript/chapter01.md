@@ -170,7 +170,121 @@ problems are:
 
 And so, the people of the information age embarked upon a quest for a
 better way to manage data. The solutions they developed were **databases**.
+
+## Databases
+
+A database is defined by Oxford as "a structured set of data held in a
+computer, especially one that is accessible in various ways".[^4] This is a 
+good enough definition. A database management system (DBMS) is the software
+that both structures the data, and makes it accessible. From here on out,
+when I use the word "database", I am usually referring to the whole package
+(database and DBMS), as this is the common usage.
+
+[^4]: http://www.oxforddictionaries.com/us/definition/american_english/database
   
+What you get with any kind of database is a software system specifically
+designed to keep track of data *and its meaning and structure* somewhat
+independently of other programs, and prepared to receive new data from,
+or provide access to stored data to, multiple users at the same time with
+different needs. At a minimum, a database is a software system that stores
+data along with metadata and has some kind of API[^5] by which users can
+create, read, update, and delete[^6] data.
+
+[^5]: application programming interface
+
+[^6]: the so-called "CRUD" operations
+
+The term **metadata** is often defined as "data about data" although I
+think "information about data" is more accurate. What it means is that,
+instead of just storing the data, the database can also inform its users
+about what the data is. If the data is `4809650024`, the metadata may be
+`Professor Clark's phone number`. There are many types of databases
+and therefore many types of metadata---we will explore these more beginning
+in chapter 3---but the point is that users of a database can make some sense
+of the data without knowing the process or program that created it. Consider
+the analyst in my example, who wants to use the historical order data but
+was not familiar with the order entry process. If the data were stored in
+some kind of database, he could use the metadata as a guide to know which
+number was sales, which was returns, and so on.
+
+In addition to metadata, databases also need to present an interface to
+humans (and generally also to other software programs) by which they can
+access the data. For the past few decades, the best-known such interface
+is the structured query language SQL.[^7]. SQL has four main commands:
+`INSERT`, `UPDATE`, and `DELETE`, which are used to manipulate data in the
+database, and `SELECT`, which is used to **query** the database, in other words,
+to request data for some purpose. Dialects of SQL with minor differences are
+used by most of the long-established database brands on the market---Oracle,
+IBM DB2, Microsoft SQL Server, PostgreSQL, MySQL, etc---so it has the
+benefit of being an industry standard.
+
+[^7]: The name of SQL may be pronounced "sequel" or "ess, queue, ell"
+
+Because SQL is a public interface, it means that multiple users and
+multiple programs can access the data in the same database. Salespeople
+may enter their orders in a mobile app, customers may place orders online
+through a website, secretaries may enter the data using a Microsoft Access
+form, the shipping department may receive the data via e-mail reports, and
+the accountant may view it in a spreadsheet, but, since all of these programs
+are speaking to the database via SQL, it doesn't matter that they were all
+purchased at different times, programmed in different languages, and used
+by different users. Databases therefore offer the benefit of **program-data
+independence**: since the data has metadata and a stable interface, we can
+change a program or process that interacts with it (such as the structure of
+a data entry form) without worrying about disrupting every *other* program
+or process that uses it.
+
+Databases can be designed to overcome each the other problems with a
+file-based approach that I identified earlier. Performance can be tuned as
+databases scale, controlling the levels of redundancy and structure depending
+on practical needs. Databases can apply fine-grained security policies to
+manage what each user can view or alter, as well as ensuring reliability with
+replication and backups. Databases can coordinate the actions of multiple
+concurrent users and enforce atomicity and integrity of transactions so that
+versions of the data do not get mixed up. New types of databases have
+emerged in the past few years to deal with the demands of "big data" and we
+will discuss them in this course. But the two universals are that databases
+can describe themselves via metadata, and grant program-data independence
+via stable APIs such as---but not limited to---SQL.
+  
+## Data Engineering
+
+The primary limitation on the database approach is that it requires discipline
+and expertise. Someone must create and maintain the database---and the
+server upon which it resides---so that other users can access it. Since all of
+the data is kept "in one basket", so to speak, backups must be made, and
+measures must be taken to protect the database servers from hackers as well
+as natural disasters. Performance optimizations must be made based on
+the scale of the database, the types of queries it receives, and other context.
+Moreover, someone has to make decisions about the structure and definitions
+of the data---for example, when is revenue counted: when the order is placed,
+when payment is received, or later when it is known that the customer
+will not return the merchandise? These are some of the responsibilities of
+database administrators (DBAs).
+
+In the age of big data, a new role is emerging which takes a larger view
+of the flow of business data, a role which I call Data Engineering. For
+many years (from perhaps 1985 to 2005), data management primarily meant
+choosing a relational database brand and hiring DBAs who knew that brand
+(e.g., Oracle). But now, primarily due to explosions in volume, velocity, and
+variety of data, a single centralized database can no longer be the entire
+picture of how data is organized and accessed in a business. Data engineers
+must consider the *flow* of data at Internet speed and at scales beyond what
+can be stored on a single server. Cluster-based computing presents new
+trade-offs that must be made between data consistency and response time. And 
+the different uses of data have such radically different operational needs
+(transaction processing vs. big data analytics, for example), that different
+data models need to be employed at the same time for different purposes.
+
+A data engineer therefore needs to know about how data is accessed and
+shared between users and applications over networks and in computer clusters.
+He needs to know about the different types of data models and which tasks
+they are best suited for. He needs to know about the new challenges of "big
+data" and the tools and techniques that are being developed to work with
+it. And fnally he needs to integrate a variety of data management solutions
+into a data "pipeline", automate it, and maintain it. The remainder of this
+book surveys each of these knowledge areas.
+
 ## References & Recommended Reading
 
 - "What is the Internet, really?", TED talk by Andrew Blum, author of "Tubes".
