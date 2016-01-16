@@ -45,11 +45,11 @@ a megabyte, and so on.[^1] Table 1.1 provides the common terms for various
 measures of data.[^2]
 
 [^1]: It's not exactly the metric system. 2^10^ is 1024, close but not quite 
-1000.
+    1000.
 
 [^2]: There's a petition going around to officially name 2^90^---about a 
-nonillion bytes---a "hellabyte".  I'm all for it.  We're going to have to start
-calling it *something* soon.
+    nonillion bytes---a "hellabyte".  I'm all for it.  We're going to have to \
+    start calling it *something* soon.
 
 ![Fig. 1.1: Measures of Data](/images/kilomegagigabytes.png)
 
