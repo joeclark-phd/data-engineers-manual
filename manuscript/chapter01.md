@@ -1,4 +1,4 @@
-# Atoms, Bytes, and Databases
+# Chapter 1: Atoms, Bytes, and Databases
 
 This chapter lays the groundwork for learning about data management by
 introducing data storage as a physical technology, then discussing how data
@@ -18,7 +18,7 @@ of your computer is "memory" (or RAM) which holds---in the form of
 electrical impulses|the instructions and data that your computer is currently
 processing. This memory fades away when the machine is powered off.
 Consequently, for you to be able to do any non-ephemeral work, the computer
-needs some means of saving its state or its output to persistent storage.
+needs some means of saving its state or its output to **persistent storage**.
 Usually this means a device like a hard disk drive (HDD), but there are
 other options for persistent storage such as solid-state drives (SSD), optical
 disks (CDs/DVDs), thumb drives, and tape drives. Any of these devices can
@@ -39,8 +39,8 @@ overlooked physical and human aspects of big data and the Internet.
 
 Logically (now we are back in the realm of symbols), any persistent storage
 device, such as a hard disk, can be thought of as a long, long list of "ones"
-and "zeroes" which encode meaning. Eight of these digits or bits taken
-together make up a byte. We refer to 2^10^ bytes as a kilobyte, 2^20^ bytes as
+and "zeroes" which encode meaning. Eight of these digits or **bits** taken
+together make up a **byte**. We refer to 2^10^ bytes as a kilobyte, 2^20^ bytes as
 a megabyte, and so on.[^1] Table 1.1 provides the common terms for various
 measures of data.[^2]
 
@@ -48,14 +48,14 @@ measures of data.[^2]
     1000.
 
 [^2]: There's a petition going around to officially name 2^90^---about a 
-    nonillion bytes---a "hellabyte".  I'm all for it.  We're going to have to \
+    nonillion bytes---a "hellabyte".  I'm all for it.  We're going to have to 
     start calling it *something* soon.
 
 ![Fig. 1.1: Measures of Data](/images/kilomegagigabytes.png)
 
 The bits and bytes on your disk would simply be electronic gibberish if
 your operating system didn't know how to read them. Fortunately, these
-bytes are structured according to a file system so your operating system
+bytes are structured according to a **file system** so your operating system
 (e.g. Windows, Mac OS, or Linux) can read them and interpret the data
 as files. A file is just a chunk of bytes on disk that is given a name and a
 place in the structure of folders or directories. In this sense, programs like
@@ -78,6 +78,99 @@ sound, video, and other types of data. You can transfer them from one disk
 to another, e-mail them to colleagues, and share them on the Internet. But
 if this was the end of the story, we'd quickly run into some problems.
 
+## The Trouble With Files
+
+Imagine that you work at a small mail-order business where salesmen take
+orders over the phone, write them down on paper, and hand them to a data
+entry secretary so that the orders will be fulfilled and sales commissions will
+be paid. The secretary enters the handwritten data into a digital file---let's
+just say it's a spreadsheet. At the end of every day, she e-mails the file
+containing the day's orders to the fulfillment department, which processes
+the customers' payments and ships the orders. At the end of every week, she
+sends the seven daily files to the accountant, who uses them to compute the
+commissions that must be paid to the salesmen.[^3]
+
+[^3]: This is a real-life example, more or less. At my first real IT job, we 
+    had an order entry process like this, except instead of e-mail, the data was 
+    transferred from one person to another by floppy disk!
+    
+There are a number of problems that the business is going to experience
+in this scenario:
+
+1. The secretary is quickly going to find that she has a lot of files to keep
+  track of, if she creates a new one for each day. If she keeps it all in one
+  file, it's going to get *big* very quickly, and the two departments who
+  use the data are going to find it hard to navigate.
+
+2. The file contains all the information from the paper order form. This
+  is a huge security risk, even without the obvious threats of hacking
+  or stolen laptops---the secretary is *routinely* sharing customer credit
+  card numbers with the accountant, who has no business reason to see
+  them. Although a file may be encrypted with a password, there is no
+  finer-grained means of control that would enable the secretary to grant
+  one user access to part of the data, another user access to the other
+  part. It's all or nothing.
+  
+3. An alternative is to have the secretary enter the information twice: one
+  file for the accountant, and one file for fulfillment, each file containing
+  just what its intended users are allowed to see. This is a lot of extra
+  work, and doubles the number of typos and other errors that will creep
+  into the files.
+
+4. If the business grows, and a second data entry secretary is hired, the
+  two must coordinate their work somehow. If they both open the data
+  file at the beginning of the new day, and add new rows for new orders,
+  and then save their work to the same place (i.e. a network drive or
+  Dropbox folder that they share), there's a real risk that the second
+  one who hits "save" will overwrite and delete all the work of the first.
+  Some strategy needs to be devised so that they work independently,
+  then consolidate their work.
+
+5. What if the fulfillment department needs to add their own annotations
+  to the file, for example, noting when a payment was declined or an
+  order was returned by the customer? We quickly run into a **versioning**
+  problem, where the fulfillment department is making changes to the
+  file they received yesterday, then sending them to the secretary who
+  has already added new orders for today. She has to find the changes
+  and integrate them into her new file, which may have already had
+  other modifications made. This gets even more complicated when the
+  accountant starts requesting updates on the old orders, so commissions
+  may be adjusted if the customer returns an order three weeks after it
+  was taken. In addition to providing the updated file, the secretary also
+  needs to highlight *how* it was changed.
+
+6. If the content or structure of the information captured on the paper
+  order form changes, it's going to create real headaches for data entry
+  and processing. If, for example, salesmen are assigned to different
+  regional territories, and need to record "region" on the order form,
+  the secretary must add a new column to the spreadsheet. But this
+  information is not present in all the historical records, which affects the
+  accountant---her process for calculating sales and commission totals
+  must change. Over time, the spreadsheet's structure may change several
+  times, forcing everyone to keep learning new processes.
+  
+7. If, in time, the business decides to re-use the order data for some new
+  purpose, an analytical purpose, such as customer relationship management
+  or marketing research, the analysts are going to find themselves
+  dealing with monstrous spreadsheets, probably multiple versions of
+  some of the data, and old versions having different structure and definitions 
+  than newer versions. The files may be all but indecipherable to outsiders.  
+
+In the early days of business computing, problems like these showed
+the limits of using files alone for persisting data to disk. In review, these
+problems are:
+
+1. Challenges of scale
+2. Security and privacy issues
+3. Redundancy and inconsistency
+4. Challenges of coordination
+5. Version control problems
+6. Program-data dependence
+7. Files don't describe themselves well
+
+And so, the people of the information age embarked upon a quest for a
+better way to manage data. The solutions they developed were **databases**.
+  
 ## References & Recommended Reading
 
 - "What is the Internet, really?", TED talk by Andrew Blum, author of "Tubes".
