@@ -187,7 +187,7 @@ movie data above, in JSON:
       "year": 2014,
       "rating": "PG-13",
       "crew": [
-                {"name": "Chrisopher Nolan", "role": "Director"},
+                {"name": "Christopher Nolan", "role": "Director"},
                 {"name": "Hans Zimmer", "role": "Composer"},
               ],
       "cast": [
