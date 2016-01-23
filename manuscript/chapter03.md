@@ -1,8 +1,8 @@
 # Chapter 3: A Multitude of Databases 
 
 Databases, that is, software systems that persist data for future retrieval, 
-come in many forms because they face numerous challenges and trade-offs.  
-They abstract away the physical storage and retrieval of data so that 
+come in many forms because they face numerous challenges and 
+trade-offs.  They abstract away the physical storage and retrieval of data so that 
 application developers can work with data models appropriate to their business 
 rules and constraints.  The relational data model has been dominant since the 
 1970s but now shares the field with a number of other types of data models.  
@@ -36,7 +36,7 @@ Consequently, decisions made in the initial
 
 What most real database management systems do is to provide a layer of 
 abstraction on top of the physical storage of data.  The abstraction is 
-called a **data model* and there are several common ones.  In the **relational 
+called a **data model** and there are several common ones.  In the **relational 
 data model**, data is stored in tables with rows and columns, with a few 
 very simple rules:
 
@@ -118,10 +118,11 @@ architectures**.  A **client** in this context is a piece of software or
 hardware that makes requests to a server over a network.  A **server** is a 
 centralized piece of software or hardware that waits for, and responds to, 
 these requests.  Client-server architectures can be categorized as "thin 
-client" or "fat client", or "two-tier", "three-tier", and "*n*-tier".  
-Enterprises these days are also bringing within their walls some of the 
-data architecture concepts that emerged on the Internet, such as RESTfulness, 
-which will be discussed in Chapter 5.
+client" or "fat client", or "two-tier", "three-tier", and 
+"*n*-tier".  Enterprises these days are also bringing within their walls 
+some of the data architecture concepts that emerged on the Internet, such 
+as the service-oriented architecture that will be discussed 
+in Chapter 5.
 
  - TODO: [Fig. 3.1. Diagram of fat-client, 2-tier application]
 
@@ -173,7 +174,7 @@ client side, and mobile applications tend to be "fatter" than websites.  With
 a little imagination, you can further generalize 
 these concepts to four-tier or *n*-tier application architectures. 
 
-![Table 3.2: Types of logic in data-driven applications](/images/3tiers.png)
+![Table 3.2: Types of logic in data-driven applications](/images/3-tiers.png)
 
 ## Choices in Logical Database Design
 
