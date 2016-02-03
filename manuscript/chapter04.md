@@ -21,13 +21,13 @@ data can be located and retrieved, so that's the main value proposition
 of the key-value data model.
 
 [^hash]: A hash function, in computer science, is any function that can
-"crunch" an arbitrary key and produce a number within a desired range.  For
-example, if there are 1000 blocks where data may be stored on a particular
-disk, the database may hash a key by interpreting it as a number, dividing
-by 1000, and taking the remainder as the hash.  This would be guaranteed
-to be a number between 0 and 999 and could be used as the physical "address"
-for a piece of data.  See [Wikipedia](https://en.wikipedia.org/wiki/Hash_function)
-for more on hash functions.
+    "crunch" an arbitrary key and produce a number within a desired range.  For
+    example, if there are 1000 blocks where data may be stored on a particular
+    disk, the database may hash a key by interpreting it as a number, dividing
+    by 1000, and taking the remainder as the hash.  This is guaranteed
+    to be a number between 0 and 999 and could be used as the physical "address"
+    for a piece of data.  See [Wikipedia](https://en.wikipedia.org/wiki/Hash_function)
+    for more on hash functions.
 
 <fig 4.1. a key-value query: ex. from Riak>
 
