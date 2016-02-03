@@ -125,7 +125,7 @@ if the class.)  In relational algebra, the result of this query can be
 expressed as:
 
 {$$}
-\pi_{id,fname,lname}(students \times enrollment \times \sigma_{code=CIS355}(classes))
+\Pi_{id,fname,lname}(students \Join enrollment \Join \sigma_{code=CIS355}(classes))
 {/$$}
 
 sigma<classes.code=CIS355>(pi<id,firstname,lastname>(students*enrollment*classes))
