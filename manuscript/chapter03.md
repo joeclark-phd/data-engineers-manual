@@ -5,8 +5,8 @@ come in many forms because they face numerous challenges and
 trade-offs.  They abstract away the physical storage and retrieval of data so that 
 application developers can work with data models appropriate to their business 
 rules and constraints.  The relational data model has been dominant since the 
-1970s but now shares the field with a number of other types of data models.  
-Databases introduce unique challenges for operations and maintenance.
+1970s but now shares the field with a number of other types of data 
+models.  Databases introduce unique challenges for operations and maintenance.
 
 ## Defining the Database
 
