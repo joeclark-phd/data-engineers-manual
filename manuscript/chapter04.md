@@ -394,7 +394,7 @@ reducers might begin like so:
       ...
       }
 
-Although in this example you have to write the "map()" and "reduce()" 
+Although in this example you have to write the `map()` and `reduce()` 
 programs in an imperative programming language such as Python or
 Java, those two functions are by design quite simple.  The really hard 
 work is organizing the parallel processing and the "shuffling" of data 
@@ -441,25 +441,65 @@ to replicate each other's work?  Knowing what you now know about the
 possibilities of doing analytics right in the database, you may see the value
 in moving the logic there where it can be consumed by both apps.
 
-Databases offer a number of ways we can define program logic:
+### Stored procedures and triggers
 
-Stored procedures or user-defined functions... Triggers...
+Databases offer a number of ways we can implement program logic.  One 
+mechanism is to implement **stored procedures** (also called **user-defined
+functions**), which are imperative scripts saved in the database.  These 
+can be employed to execute multi-step queries or to manipulate the data
+itself, for example, moving data from a "current" table to a "historical"
+table at the end of the day.  User-defined logic can also be implemented 
+in **triggers**, a kind of stored procedures that run whenever certain
+events occur (like new data being inserted).  These could be used for
+simple logging of activity or for complex event processing (for example,
+a trigger could check incoming bank transactions for signs of fraud by
+comparing them to a pre-computed analytical model).
 
-Views...
+Each vendor implements its own language for
+stored procedures, and this is one of the reasons we used to be taught
+not to use them.  The theory is that, without stored procedures, you could
+migrate your database from Microsoft to Oracle or IBM to Teradata on
+a moment's notice, but once you start writing procedures you're locked
+in to a proprietary platform.  The trade-off of costs and benefits will
+depend on your situation.
+
+### Views
+
+In addition to imperative logic, you can embed declarative queries within
+most databases as **views**.  These are "virtual" tables that are not stored
+as data on disk but rather are stored as queries in the query language.  When
+a user requests data from a view, as if it were a table, a query plan is
+optimized and executed in the normal way.
+
+A major benefit of using views is to further the goal of program-data 
+independence.  If a user is accustomed to accessing a view defined by the
+database administrator, the DBA can subsequently change the structure of the 
+*real* tables behind the scenes.  All he has to do is update the view so that
+it produces the original result.  And as we have seen, database queries can 
+in fact describe complicated analyses, so a view does more than merely 
+simplify data retrieval.
 
 ## Summary
 
-Querying a database *is* analyzing data.
+The message I hope I have conveyed with this chapter is that querying a 
+database *is* analyzing data.  When you choose a data model, you are choosing
+certain affordances that its implementation affords, such as rapid retrieval
+or flexible query structures.  Query languages are usually declarative, not
+imperative, and this has the tremendous benefit of leveraging the database's
+query optimizer to decide how to execute them.  You can take advantage of
+very a succinct syntax to define what you want, and the query optimizer brings 
+to bear a great deal of computer science knowledge to execute your request
+as efficiently as possible.
 
-Use a declarative language so you can let the query optimizer apply the
-accumulated wisdom of other developers and make your work easier.
-
-SQL and MapReduce, among other tools, can make some forms of complex data 
-analysis very simple.
-
-MapReduce is for whole-database processing.
-
-There are a number of ways to move data processing logic into the database.
+Conventional wisdom is that databases should be leveraged for storage logic
+only, that queries should be limited to basic CRUD operations, and that 
+developers should remain aloof from any particular platform by keeping data
+processing logic outside of the database.  On the other hand, however, I have 
+shown that databases can in fact be powerful and elegant engines for
+analytical processing, can make complex data processing tasks appear simple,
+and that storing logic within the database has benefits that may offset the
+risk of vendor lock-in.  We will return to relational databases, specifically,
+in Chapters 9 and 10.
 
 ## References & Recommended Reading
 
