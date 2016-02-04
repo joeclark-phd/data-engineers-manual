@@ -240,21 +240,22 @@ look something like this[^totals], depending on the database vendor:
 Implied in that little GROUP BY clause is potentially a huge amount of work
 sorting the data and computing subtotals that the query optimizer will plan
 and execute.  In a massive data warehouse, it will likely make use of 
-parallelization to balance the workload and minimize data transfer over 
-the network.
+parallelization to balance the workload over a computer cluster and 
+must carefully organize the work to minimize data transfer over 
+the network.  But for you, it's just two words at the end of the query.
 
 [^totals]: Computing the row, column, and grand totals would be done 
     separately.
     
 ### Time series analysis
 
-Typically we think about SQL as a tool to retrieve data as it is stored. Even
+Typically we think about SQL as a tool to retrieve stored data. Even
 if we're accustomed to calculating sums, averages, and other aggregations,
 the assumption is that we're limited to what's already there.  This overlooks
 the fact that some very powerful analyses can be accomplished by using SQL's
 JOIN clause and some external or arbitrary data.
 
-One good case is to generate time series.  The problem with just using
+One good case for this is generating time series.  The problem with just using
 GROUP BY as in the example above is that, if there is no data for a particular
 time period, it won't occur in the results.  We cannot easily make a line graph
 of a time series, though, if it is missing months and days.  The solution
@@ -265,7 +266,7 @@ in most databases but one I've never seen in an introductory database
 textbook.[^except]
 
 [^except]: I *did* read about it in Eric Redmond and Jim R. Wilson's book
-    *Seven Databases in Seven Weeks*, an excellent field guide to the
+    *Seven Databases in Seven Weeks*, an excellent field guide to wild
     databases.
 
 This concept of joining temporary or external tables to your existing data
@@ -294,10 +295,10 @@ engine.[^howe] Imagine you have a database of word counts from various
 web pages, structured like so:
 
     Document         Word  Frequency
-    doc1.txt      traffic          3
-    doc1.txt      weather          1
-    doc2.txt   politician          2
-    doc2.txt          tax          2
+    doc1.htm      traffic          3
+    doc1.htm      weather          1
+    doc2.htm   politician          2
+    doc2.htm          tax          2
          ...          ...        ...
     
 In fact, this can be seen as part of a sparse matrix with one row for each
@@ -308,12 +309,12 @@ document similarity.  Basically, the more words two documents have in common,
 and the more frequent those words in those documents, the higher the
 similarity score in this new matrix, which could look like:
 
-              doc1.txt  doc2.txt  doc3.txt  doc4.txt  ...
-    doc1.txt         -         3        15         0  ...
-    doc2.txt         3         -         8        55  ...
-    doc3.txt        15         8         -        21  ...
-    doc4.txt         0        55        21         -  ...
-         ...       ...       ...       ...       ...  ...
+              doc1.htm  doc2.htm  doc3.htm  doc4.htm  ...
+    doc1.htm         -         3        15         0  ...
+    doc2.htm         3         -         8        55  ...
+    doc3.htm        15         8         -        21  ...
+    doc4.htm         0        55        21         -  ...
+         ...       ...       ...       ...       ...  
      
 This result, obtainable with a simple SQL query, could be used to power
 a recommendation engine (e.g. "if you liked this article, you might like
@@ -328,33 +329,107 @@ documents.
 [^transpose]: The **transpose** is the matrix with rows flipped to columns
     and vice versa.
 
-For the record, I can't say that any of the tricks I'm describing here are
+For the record, I can't say that the tricks I'm describing here are
 guaranteed to be faster or more efficient in a database than in a specialized
 tool; however, I'd like to emphasize the point that these methods leverage
 the work that others have done for you, and often utilize programming 
 techniques like parallelization that may be beyond your abilities.  The
 magic ingredient is that in each case you are using a *declarative* query
-language, not telling the computer what to do but only the result you want,
-and this allows that query optimizer to find the most efficient method
+language, telling the database not what *to do* but what you *want*,
+allowing that query optimizer to find the most efficient method
 to do the job.
     
 ## Crunching Big Data with MapReduce in the Database
 
-Although you have to write the "map()" and "reduce()" programs, these are
-quite simple, and the database engine handles the truly complex task of 
-organizing the parallel processing and delivering intermediate and final
-results.
+Database queries are often about "finding" data, that is, retrieving a small
+piece of data from within a large database.  SQL and other query languages 
+do this very well, and databases use tricks like indexing to speed up these 
+kinds of search-and-retrieve operations.  However, for some Big Data analysis, 
+what you want is to crunch the entire database at once.  When Google updates
+its search engine index, for example, it may analyze literally the entire
+contents of the World Wide Web.  When Amazon or Netflix update their
+recommendation engines, they may analyze the entire history of customer
+transactions in one big process.  And so on.
 
-Many new tools for the Hadoop platform eliminate even this programming 
-requirement.  Hive, for example, is a popular framework for writing SQL-like
-queries that are transformed, behind the scenes, into MapReduce 
-jobs.  The users of these platforms may have thought they had 
-replaced traditional databases but are instead re-discovering some of the 
-core features like declarative query languages!
+Out of the problems faced by Google, Amazon, Facebook, Yahoo and other web
+giants emerged new technologies for massive data processing jobs on whole
+databases.  Here the challenge is not search-and-retrieval, but figuring out
+how to parallelize the job so that the database can be split up into chunks
+over a few dozen (or hundred, or thousand) servers that can all work
+independently---the only way to do this kind of data processing in an
+acceptable time frame.
 
+One such contribution is the MapReduce algorithm invented by Google for its
+own use and popularized by the Hadoop project initiated by Yahoo.  In a
+nutshell, a developer writes two programs: a `map()` program that reads
+one row or record of data and generates ("emits") an intermediate result,
+and a `reduce()` program that takes all those intermediate results and
+combines or sums them up into a final answer.  This can be massively
+parallelized if the `map()` program is written in such a way that it can
+run independently on each piece of data, no matter in what order they're
+processed.  A typical example would be a word counting program like
+this pseudo-code:
+
+    def map(document):
+      for word in document:
+        emit({word:1})
+
+This would produce a number of key-value pairs as the intermediate 
+data.  Those would be shuffled around and delivered to a `reduce()` program
+that runs once for each key.  (In this case, once for each word.)
+    
+    def reduce(word,emits):
+      count=0
+      for e in emits:
+        count = count + 1
+      return({key:count})
+
+For each word counted, this reducer would count the output emitted by the
+`map()` function and return a grand total.  The final output of all the 
+reducers might begin like so:
+
+    { {"a": 12345},
+      {"an": 4567},
+      {"and": 8765},
+      ...
+      }
+
+Although in this example you have to write the "map()" and "reduce()" 
+programs in an imperative programming language such as Python or
+Java, those two functions are by design quite simple.  The really hard 
+work is organizing the parallel processing and the "shuffling" of data 
+from the independent mappers and reducers to deliver the intermediate 
+and final results.  Consistent with the theme of this chapter, I want
+to encourage you to get a database engine to do that work for you.
+
+You have probably heard the name Hadoop.  (If not, I just used it a few
+paragraphs back.  Now may be the time to get some caffeine before finishing
+the chapter.)  Hadoop is the most famous platform for running MapReduce jobs,
+but it's not exactly a database.[^hadoopis]  There *are* databases that 
+support MapReduce jobs, however, especially some of the non-relational or 
+NoSQL databases that have emerged in the era of cluster computing.  MongoDB,
+the leading document store, and Riak, an open-sourced key-value store based
+on Amazon's proprietary Dynamo database, are two of the leading ones.  In
+MongoDB, for example, you define `map()` and `reduce()` functions in 
+JavaScript and the database takes care of everything else.
+
+[^hadoopis]:  Hadoop consists of a file system, HDFS, that allows you to 
+    store data on a cluster of hundreds or thousands of commodity computers
+    but deal with them as if they were just one big hard disk, *and* a 
+    framework for defining and running MapReduce jobs in Java.  There is also
+    an "ecosystem" of related tools, such as Hive, which generally go along
+    with any Hadoop installation.
+    
 ## Logic in the Database
 
+
+
 ## References & Recommended Reading
+
+- "Data Manipulation at Scale".  MOOC by Bill Howe of U. Washington.  Via
+  [Coursera](https://www.coursera.org/learn/data-manipulation).
   
 - Redmond, E., & Wilson, J. (2012). Seven Databases in Seven Weeks. The
   Pragmatic Bookshelf.
+
+- "MapReduce".  Wikipedia.  https://en.wikipedia.org/wiki/MapReduce
