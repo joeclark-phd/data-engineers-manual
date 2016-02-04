@@ -422,7 +422,44 @@ JavaScript and the database takes care of everything else.
     
 ## Logic in the Database
 
+As mentioned in Chapter 3, database-driven applications are often architected
+in three tiers, with the presentation logic on the client side, data storage
+logic in the database, and data *processing* logic in an application server
+in between.  This separation of responsibilities allows developers to work
+together without ruffling each other's feathers too much.  I believe, however,
+in the somewhat heretical view that more and more program logic should be moved
+into the database.  Databases should not be treated as "dumb" systems merely
+for storing and fetching data.
 
+Moving more logic into the database has the advantage of leveraging the query
+optimizer, for sure, but that's not all.  An additional advantage is that more
+and more often, you may have multiple application servers (say, a web server
+and some kind of mobile application) that need to do the same kinds of
+processing (such as generating a product recommendation for the user), built
+on the same database.  Does it make sense for the developers of both apps
+to replicate each other's work?  Knowing what you now know about the 
+possibilities of doing analytics right in the database, you may see the value
+in moving the logic there where it can be consumed by both apps.
+
+Databases offer a number of ways we can define program logic:
+
+Stored procedures or user-defined functions... Triggers...
+
+Views...
+
+## Summary
+
+Querying a database *is* analyzing data.
+
+Use a declarative language so you can let the query optimizer apply the
+accumulated wisdom of other developers and make your work easier.
+
+SQL and MapReduce, among other tools, can make some forms of complex data 
+analysis very simple.
+
+MapReduce is for whole-database processing.
+
+There are a number of ways to move data processing logic into the database.
 
 ## References & Recommended Reading
 
