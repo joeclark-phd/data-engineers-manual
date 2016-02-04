@@ -312,16 +312,14 @@ before writing any code to implement it.
 
 - Fielding, R. (2000). Architectural Styles and the Design of Network-based 
   Software Architectures. [Dissertation]. Chapter 5: Representational State 
-  Transfer (REST). 
-  http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm
+  Transfer (REST). [[Link]](http://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
 
 - Grinberg, M. (2014). Designing a RESTful API with Python and Flask. 
-  http://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask
+  [[Link]](http://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask)
 
 - Hunter, T. (2014). Consumer-Centric API Design. [e-book]. 
-  https://github.com/tlhunter/consumer-centric-api-design
+  [[Link]](https://github.com/tlhunter/consumer-centric-api-design)
 
 - Rodriguez, A. (2008). RESTful Web Services: The basics.  IBM 
-  developerWorks. 
-  http://www.ibm.com/developerworks/library/ws-restful/ws-restful-pdf.pdf
+  developerWorks. [[Link]](http://www.ibm.com/developerworks/library/ws-restful/ws-restful-pdf.pdf)
   
