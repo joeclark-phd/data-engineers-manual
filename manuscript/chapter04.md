@@ -23,10 +23,11 @@ of the key-value data model.
 [^hash]: A hash function, in computer science, is any function that can
     "crunch" an arbitrary key and produce a number within a desired range.  For
     example, if there are 1000 blocks where data may be stored on a particular
-    disk, the database may hash a key by interpreting it as a number, dividing
-    by 1000, and taking the remainder as the hash.  This is guaranteed
-    to be a number between 0 and 999 and could be used as the physical "address"
-    for a piece of data.  See 
+    disk, the database may hash a key by interpreting it as a binary number, 
+    dividing
+    by 1000, and taking the remainder.  The remainder is guaranteed
+    to be a number between 0 and 999 and could be used as the physical 
+    "address" for that piece of data.  See 
     [Wikipedia](https://en.wikipedia.org/wiki/Hash_function) for more on 
     hash functions.
 
@@ -94,12 +95,13 @@ The query optimizer is a built-in function of a database system that,
 given a query, decides on the best plan to retrieve the data.  You could, of
 course, come up with your own **query plan**.  If you have taken a computer
 science degree, you know that there are many known algorithms for
-sorting and searching through lists of, speeding up retrieval with
+sorting and searching through lists of data, speeding up retrieval with
 hash functions and indexes, and employing parallel processing to accelerate
 an analysis.  But writing code to do those things is a major effort, and 
 it has already been done for you... by database developers at IBM, Oracle,
-Microsoft, Teradata, and elsewhere.  Even non-programmers can take advantage
-of their expertise by designing their analyses as database queries.
+Microsoft, Teradata, and other database vendors.  Even non-programmers 
+can take advantage
+of their expertise by running their analyses as database queries.
 
 In order to leverage a query optimizer, queries are written in **declarative
 languages**, the best known such language being SQL.  In a declarative 
@@ -122,8 +124,8 @@ and the query
     WHERE classes.code="CIS355"
 
 which should produce a roster of all students enrolled in CIS 355.  (In this 
-simple example we're ignoring the issues of semester and multiple sections 
-if the class.)  In relational algebra, the result of this query can be 
+simple example we're ignoring the issues of multiple semesters and multiple 
+sections of the class.)  In relational algebra, the result of this query can be 
 expressed as:
 
 {$$}
@@ -170,17 +172,18 @@ doesn't need to be processed repeatedly.
 
 A database **index** is similar to the index at the back of a book: it is an
 added-on table, sorted for easy lookup, which tells the database where to find
-certain values in another table.  There are different ways to implement an
-index internally, and different solutions are best for indexing different 
-tables.  Although you can specify indexes manually, a clever database will
-also automate some of the decisions related to indexing, not only when to
+certain values in another, larger, unsorted data structure.  There are 
+different ways to implement indexes internally, and different 
+solutions are best for indexing different 
+data sets.  Although you can specify indexes manually, a clever database will
+also automate some of the decisions related to indexing, not only how to
 create them but also when to use them.
 
-In the era of big data, databases are often partitioned over large clusters 
+In the era of Big Data, databases are often partitioned over large clusters 
 of computers or at least multiple hard drives, and even personal computers
 these days often have multiple processor cores, so we can gain a lot of
 efficiency by doing data processing operations in parallel.  Determining
-how, and when, to parallelize query processing can be a real brain-teaser
+how, and when, to **parallelize** query processing can be a real brain-teaser
 even for a computer scientist, and is beyond what the casual database user
 can figure out easily.  The best databases know how to take advantage of
 parallelization, and some (such as Teradata) are famous for it.
@@ -191,13 +194,11 @@ Overall, my claim is that databases allow you to leverage the hard work
 of decades-long research by developers to execute complicated analyses
 without having to write complex queries.  This fact is rarely even hinted
 at in introductory database textbooks, because so much attention is given
-to databases as simple engines for storing and retrieving unprocessed 
-data.  A few examples of analyses that can be done very simply within
-databases are:
-
-* "pivoting" a data table
-* time series analysis
-* matrix multiplication to create a search engine index
+to databases as simple engines for storing and retrieving  
+data with the CRUD (create, read, update, delete) operations.  A few examples 
+of analyses that can be done very simply within
+databases are "pivoting" a data table, joining an external or temporary
+table to enrich an analysis, and multiplying sparse matrixes with SQL.
 
 ### Pivoting a data table
 
@@ -205,7 +206,7 @@ A pivot table is the *sine qua non* of data analysis.  It is a summarization
 and cross-tabulation of data that allows the user to arbitrarily select
 column headings, row headings, and the aggregation function (i.e. sum,
 average, or count), and automate the calculations.  For example, given
-a large data table of sales transactions, such as
+a large table of raw sales transaction data, such as:
 
     Date      Customer    Product   UnitPrice Quantity  ...
     03-Jan    Acme Corp   Widget    $75.00    3         ...
@@ -214,8 +215,9 @@ a large data table of sales transactions, such as
     10-Jan    Acme Corp   Widget    $75.00    3         ...
     ...       ...         ...       ...       ...       ...
 
-You might be interested in sales by product by month, hence "pivot" the
-data to a table like this:
+You might be interested in sales by product by month, hence want to "pivot" 
+the data with months as row indexes, products as column headings, and
+`sum()` as the aggregation method.
 
                   Product:
     Month:          Gizmo     Widget  Thingamajig     TOTAL
@@ -223,7 +225,8 @@ data to a table like this:
     February      3221.00    6150.00      1231.88  10602.88
     TOTAL         7015.10   11775.00      2240.35  21030.45
 
-Pivot tables are a powerful feature of spreadsheet software, but data in a
+Pivot tables are a powerful feature of point-and-click spreadsheet software, 
+but data in a
 spreadsheet cannot realistically span very many columns or rows before it
 becomes unwieldy.  Relational databases are excellent for applying these
 kinds of aggregations to
@@ -253,12 +256,14 @@ Typically we think about SQL as a tool to retrieve stored data. Even
 if we're accustomed to calculating sums, averages, and other aggregations,
 the assumption is that we're limited to what's already there.  This overlooks
 the fact that some very powerful analyses can be accomplished by using SQL's
-JOIN clause and some external or arbitrary data.
+JOIN clause to bring in some external or artificial data.
 
 One good case for this is generating time series.  The problem with just using
 GROUP BY as in the example above is that, if there is no data for a particular
-time period, it won't occur in the results.  We cannot easily make a line graph
-of a time series, though, if it is missing months and days.  The solution
+time period, it won't occur in the results.  There may be no missing months, 
+but there may very well be missing days if we choose to pivot to that level
+of detail  We cannot easily make a line graph
+of a time series, though, if it is full of gaps.  The solution
 can often be to generate a **temporary table** containing the series of
 months, weeks, or days that we want to analyze, and then JOIN it to a
 pivot table of the data as before.  This is an incredibly simple operation
@@ -279,7 +284,7 @@ software, but you might be able to do it with a few SQL tricks.
     
 ### Matrix multiplication to enable keyword search
 
-Matrix multiplication is very important to many applications of business
+Matrix multiplication is important to many applications of business
 and scientific data analysis.  Sparse matrices (that is, matrices with 
 zeroes in most positions) can be efficiently represented as data tables
 with three columns---row number, column number, value---and multiplied
@@ -297,17 +302,19 @@ web pages, structured like so:
     Document         Word  Frequency
     doc1.htm      traffic          3
     doc1.htm      weather          1
+         ...          ...        ...
     doc2.htm   politician          2
     doc2.htm          tax          2
          ...          ...        ...
     
-In fact, this can be seen as part of a sparse matrix with one row for each
-document and one column for each word---sparse because most documents only
+In fact, this can be seen as a sparse matrix with a row for each
+document and a column for each word---sparse because most documents only
 contain a small fraction of possible words in the language.  If we multiply
-this matrix by its own transpose[^transpose], we produce a matrix of
-document similarity.  Basically, the more words two documents have in common,
+this matrix by its own transpose[^transpose], we produce a 
+document similarity matrix.  Basically, the more words two documents 
+have in common,
 and the more frequent those words in those documents, the higher the
-similarity score in this new matrix, which could look like:
+corresponding score in this new matrix, which might look like:
 
               doc1.htm  doc2.htm  doc3.htm  doc4.htm  ...
     doc1.htm         -         3        15         0  ...
@@ -320,20 +327,23 @@ This result, obtainable with a simple SQL query, could be used to power
 a recommendation engine (e.g. "if you liked this article, you might like
 these other articles") or to support a keyword search engine.  The trick to
 the latter is to treat the search phrase as a "document" in its own right, 
-and compute the similarity score between the search phrase and other 
+and compute the similarity score of the search phrase with other 
 documents.
      
 [^howe]: I first learned about this by taking Bill Howe's MOOC on "Data
     Manipulation at Scale" via Coursera.
     
 [^transpose]: The **transpose** is the matrix with rows flipped to columns
-    and vice versa.
+    and columns flipped to rows.
 
 For the record, I can't say that the tricks I'm describing here are
 guaranteed to be faster or more efficient in a database than in a specialized
-tool; however, I'd like to emphasize the point that these methods leverage
-the work that others have done for you, and often utilize programming 
-techniques like parallelization that may be beyond your abilities.  The
+tool; however, I'd like to emphasize the point that these methods take
+advantage of
+the work that others have done for you, and often employ advanced
+programming 
+techniques like parallelization that are beyond a casual analyst's 
+abilities.  The
 magic ingredient is that in each case you are using a *declarative* query
 language, telling the database not what *to do* but what you *want*,
 allowing that query optimizer to find the most efficient method
@@ -352,7 +362,7 @@ recommendation engines, they may analyze the entire history of customer
 transactions in one big process.  And so on.
 
 Out of the problems faced by Google, Amazon, Facebook, Yahoo and other web
-giants emerged new technologies for massive data processing jobs on whole
+giants, new technologies emerged for massive data processing jobs on whole
 databases.  Here the challenge is not search-and-retrieval, but figuring out
 how to parallelize the job so that the database can be split up into chunks
 over a few dozen (or hundred, or thousand) servers that can all work
@@ -360,31 +370,31 @@ independently---the only way to do this kind of data processing in an
 acceptable time frame.
 
 One such contribution is the MapReduce algorithm invented by Google for its
-own use and popularized by the Hadoop project initiated by Yahoo.  In a
-nutshell, a developer writes two programs: a `map()` program that reads
-one row or record of data and generates ("emits") an intermediate result,
-and a `reduce()` program that takes all those intermediate results and
+own use and popularized by the Hadoop project that came out of Yahoo.  In a
+nutshell, a developer writes two programs: a `map()` program that processes
+each piece of data and outputs ("emits") an intermediate result,
+and a `reduce()` program that gathers all those intermediate results and
 combines or sums them up into a final answer.  This can be massively
 parallelized if the `map()` program is written in such a way that it can
-run independently on each piece of data, no matter in what order they're
-processed.  A typical example would be a word counting program like
+run independently on each record or row no matter what order they're
+processed in.  A typical example would be a word counting program like
 this pseudo-code:
 
     def map(document):
       for word in document:
         emit({word:1})
-
-This would produce a number of key-value pairs as the intermediate 
-data.  Those would be shuffled around and delivered to a `reduce()` program
-that runs once for each key.  (In this case, once for each word.)
-    
+        
     def reduce(word,emits):
       count=0
       for e in emits:
         count = count + 1
       return({key:count})
 
-For each word counted, this reducer would count the output emitted by the
+The mapper would produce a number of key-value pairs as the intermediate 
+data.  Those would be shuffled around and delivered to a `reduce()` program
+that runs once for each key.  (In this case, once for each word.)
+    
+For each word counted, the reducer would count up the the output emitted by the
 `map()` function and return a grand total.  The final output of all the 
 reducers might begin like so:
 
@@ -392,17 +402,18 @@ reducers might begin like so:
       {"an": 4567},
       {"and": 8765},
       ...
-      }
+    }
 
 Although in this example you have to write the `map()` and `reduce()` 
 programs in an imperative programming language such as Python or
-Java, those two functions are by design quite simple.  The really hard 
+Java, both functions are by design quite simple.  The really hard 
 work is organizing the parallel processing and the "shuffling" of data 
 from the independent mappers and reducers to deliver the intermediate 
 and final results.  Consistent with the theme of this chapter, I want
 to encourage you to get a database engine to do that work for you.
 
-You have probably heard the name Hadoop.  (If not, I just used it a few
+You have probably seen or heard the name **Hadoop**.  (If not, I just used 
+it a few
 paragraphs back.  Now may be the time to get some caffeine before finishing
 the chapter.)  Hadoop is the most famous platform for running MapReduce jobs,
 but it's not exactly a database.[^hadoopis]  There *are* databases that 
@@ -415,7 +426,7 @@ JavaScript and the database takes care of everything else.
 
 [^hadoopis]:  Hadoop consists of a file system, HDFS, that allows you to 
     store data on a cluster of hundreds or thousands of commodity computers
-    but deal with them as if they were just one big hard disk, *and* a 
+    but deal with them as if they were just one big disk, *and* a 
     framework for defining and running MapReduce jobs in Java.  There is also
     an "ecosystem" of related tools, such as Hive, which generally go along
     with any Hadoop installation.
@@ -444,7 +455,7 @@ in moving the logic there where it can be consumed by both apps.
 ### Stored procedures and triggers
 
 Databases offer a number of ways we can implement program logic.  One 
-mechanism is to implement **stored procedures** (also called **user-defined
+mechanism is to code **stored procedures** (also called **user-defined
 functions**), which are imperative scripts saved in the database.  These 
 can be employed to execute multi-step queries or to manipulate the data
 itself, for example, moving data from a "current" table to a "historical"
@@ -453,9 +464,11 @@ in **triggers**, a kind of stored procedures that run whenever certain
 events occur (like new data being inserted).  These could be used for
 simple logging of activity or for complex event processing (for example,
 a trigger could check incoming bank transactions for signs of fraud by
-comparing them to a pre-computed analytical model).
+comparing them to a pre-computed analytical model).  I think of stored
+procedures and triggers as tools to add more intelligence to the
+data model.  
 
-Each vendor implements its own language for
+Each vendor provides its own language for
 stored procedures, and this is one of the reasons we used to be taught
 not to use them.  The theory is that, without stored procedures, you could
 migrate your database from Microsoft to Oracle or IBM to Teradata on
@@ -483,8 +496,8 @@ simplify data retrieval.
 
 The message I hope I have conveyed with this chapter is that querying a 
 database *is* analyzing data.  When you choose a data model, you are choosing
-certain affordances that its implementation affords, such as rapid retrieval
-or flexible query structures.  Query languages are usually declarative, not
+certain affordances for data processing, such as rapid retrieval
+or flexible querying.  Query languages are usually declarative, not
 imperative, and this has the tremendous benefit of leveraging the database's
 query optimizer to decide how to execute them.  You can take advantage of
 very a succinct syntax to define what you want, and the query optimizer brings 
@@ -502,6 +515,9 @@ risk of vendor lock-in.  We will return to relational databases, specifically,
 in Chapters 9 and 10.
 
 ## References & Recommended Reading
+
+- Codd, E. F. (1970). A Relational Model of Data for Large Shared Data 
+  Banks.  *Communications of the ACM 13*(6), pp. 377-387.
 
 - "Data Manipulation at Scale".  MOOC by Bill Howe of U. Washington.  Via
   [Coursera](https://www.coursera.org/learn/data-manipulation).
