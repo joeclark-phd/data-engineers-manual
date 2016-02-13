@@ -125,7 +125,7 @@ the human brain.
 The quest to develop information systems that could augment the human mind
 is a fascinating story that includes some of the most famous names in the
 history of 20th-century computing.  It began, most would agree, with a 1945
-article in **The Atlantic** by Dr. Vannevar Bush entitled "As We May 
+article in *The Atlantic* by Dr. Vannevar Bush entitled "As We May 
 Think". Bush had been the Director of the U.S. Office of Scientific 
 Research and Development, overseeing military R&D work throughout 
 World War II.  Reflecting on the vast body of scientific work and the
@@ -275,7 +275,7 @@ triangles on a chart, we assume they represent two different kinds of
 cases.  Jacques Bertin, a French cartographer, mapped the features of 
 graphics to the way a human eye interprets them in a monumental work
 called *Semiologie Graphique* in 1967, and his work has been the guide
-for almost all researchers in information visualizaiton since.
+for almost all researchers in information visualization since.
 
 ## Iterating toward enlightenment
 
