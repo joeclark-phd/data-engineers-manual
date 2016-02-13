@@ -139,7 +139,7 @@ The problem, as he saw it, was not due to the limitations of printing,
 photography, or other media technologies, but due to the way we organize
 information:
 
-> Our ineptitude at getting at the record is largely caused by the 
+> "Our ineptitude at getting at the record is largely caused by the 
 > artificiality of systems of indexing.  When data of any sort are placed
 > in storage, they are filed alphabetically or numerically, and information
 > is found (when it is) by tracing it down from subclass to subclass. It can
@@ -153,7 +153,7 @@ information:
 > by the association of thoughts, in accordance with some intricate web of
 > trails carried by the cells of the brain.... the speed of action, the 
 > intricacy of trails, the detail of mental pictures, is awe-inspiring
-> beyond all else in nature.
+> beyond all else in nature."
 
 As a potential solution, Bush imagined a future system called the "**memex**"
 which would store a library of books and articles as well as the owner's own
@@ -340,5 +340,7 @@ data to business value.
   [Link](http://blogs.hbr.org/2014/08/the-question-to-ask-before-hiring-a-data-scientist/)
 - Tamm, T., Seddon, P., & Shanks, G. (2013). Pathways to Value From Business 
   Analytics. Paper presented at ICIS 2013, Milan.
+- Tufte, E. (2001). The Visual Display of Quantitative Information. Cheshire,
+  CT: Graphics Press, Ltd.
 
 
