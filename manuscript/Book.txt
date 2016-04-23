@@ -10,7 +10,5 @@ chapter05.md
 chapter06.md
 chapter07notes.md
 chapter08.md
-chapter09.md
-chapter10.md
 backmatter.txt
 epilogue.md

@@ -1,4 +1,4 @@
-# A Workflow for Analytics Development 
+# Chapter 7: A Workflow for Analytics Development 
 
 This chapter of notes breaks down the activities and artifacts of an 
 analytics project, and to identify the skills and toolkits that will be
