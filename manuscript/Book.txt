@@ -1,6 +1,5 @@
 frontmatter.txt
 preface.md
-howto.md
 mainmatter.txt
 chapter01.md
 chapter02.md
@@ -8,7 +7,6 @@ chapter03.md
 chapter04.md
 chapter05.md
 chapter06.md
-chapter07notes.md
-chapter08.md
+chapter07.md
 backmatter.txt
-epilogue.md
+

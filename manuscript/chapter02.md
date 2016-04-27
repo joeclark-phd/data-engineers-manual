@@ -13,18 +13,22 @@ In Chapter 1, I argued that data ought to be managed independently of the
 programs that create and use it, and typically this means it is stored in some
 kind of a database. If we accept that argument, it is obvious that data must
 be communicated between systems in order to be useful. In the simplest
-case, an application sends a request for data (a **query**) to the database and
+case, an application sends a request for data (a query) to the database and
 the database sends a response that includes the requested data. Data may
 also be communicated from one database to another database, or from one
 application to another application. Moreover it is often imperative upon
-system developers, in this age of open data, to make their data available to
+system developers, in this age of **open data**[^opendata], to make their data available to
 the public *without knowing who will use it or for what purpose*. And likewise,
 as application developers we may need to consume data from sources over
 which we have no control.
 
+[^opendata]: The "open data" phenomenon is a movement toward greater sharing
+    of data with the public, particularly by government agencies and
+    publicly-funded organizations like research institutions.
+
 There are two major problems for data engineers to consider here. The
-first is how to make data available to other systems and to send, and receive
-data "messages" between them. I don't want to spoil Chapter 4 for you, but
+first is how to make data available to other systems and to send and receive
+data "messages" between them. I don't want to spoil Chapter 5 for you, but
 I'll tell you the short answer to the first one is "the Internet". 
 The other major problem,
 and the subject of this chapter, is how to structure those data messages so
@@ -83,11 +87,11 @@ more and more important as data sets become bigger.
 ### CSV: Tabular data with low overhead
 
 One of the most commonly-used text formats is **CSV**, which stands for
-"comma-separated values". Just like it sounds, each data record is structured
+"comma-separated values". Just like it sounds, each data **record** is structured
 as a single row of text, with commas between the various values. A single
 CSV file can transmit a number of records, each on a row of its own. An
 optional header row may identify the columns. Instead of commas, sometimes
-tabs, semicolons, or other delimiters are used.
+tabs, semicolons, or other **delimiters** are used.
 
 A list of the cast and crew of the movie *Interstellar* in CSV format might
 appear like so:
@@ -109,7 +113,7 @@ data represent a long list of records with a consistent structure, such as stock
 prices or weather data, and if your users are going to use the data as a table,
 to compute averages or produce charts and graphs, the CSV format may be
 a very good fit. In addition, CSV uses bytes very efficiently. Except for the
-commas, and the optional header row, everything else in the file is data.
+commas and the header row, everything else in the file is data.
 
 However, the CSV format is limited in its ability to represent data with
 a more complex or flexible structure. If you wanted to transmit data about
@@ -166,11 +170,14 @@ An example of some movie data in XML:
       </cast>
     </movie>
 
-You can see that XML is hierarchical and that we can "nest" objects and lists.
-The main drawback to XML is that it is extremely "wordy" resulting
+You can see that XML is hierarchical and that we can "nest" objects and 
+lists. This allows us to store data in complex object-oriented structures that
+correspond to the way we think about it: for example, movies can be stored as 
+aggregates that  include a cast and crew, each made up of people with different 
+roles. The main drawback to XML is that it is extremely "wordy" resulting
 in large files that are difficult for humans to read, and not really ideal for
 computers to read, either. The best cases for using XML are when
-you are transmitting an established type of document---and not when
+you are transmitting an established, standard type of document---and not when
 creating your own ad hoc data structures.
 
 ### JSON: The programmer's favorite
@@ -196,7 +203,7 @@ movie data above, in JSON:
               ]
     }
 
-Lightweight JSON messages are more efficient than XML (although less
+Lightweight JSON messages are more byte-efficient than XML (although less
 efficient than CSV) and are also very easy for programmers to use, since
 the data can simply be "dropped into" a JavaScript program without any
 changes, and into other programming languages with very minor adjustments.
@@ -204,11 +211,16 @@ Thus, JSON is becoming the preferred data format for most applications
 where software is talking to software, and CSV may still be dominant when
 data is intended for humans to use in spreadsheets and the like.
 
-## New Technologies for Data Serialization
+## Other Technologies for Data Serialization
 
-There's a term, **serialization**, for when data in computer memory or in a 
-database is exported into text files for transmission.  In addition to CSV,
-XML, and JSON, there are a few new formats aimed at allowing the 
+
+There's a term, **data serialization**, for when data in computer memory or in a 
+database is exported into streams of bytes for transmission or storage.  In addition to 
+the text-based CSV, XML, and JSON, there are binary formats and compression methods
+that can transmit more data in fewer bytes at the expense of a little overhead to
+encode or compress the data and decode/decompress it at the other end of the line.
+
+A few new standards have recently emerged aimed at allowing the 
 structural flexibility of XML or JSON while minimizing wasted bytes.  When
 sending or receiving millions of records (or billions!), the small amount
 of "overhead"---the punctuation, whitespace, and repetitions of attribute 

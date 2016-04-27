@@ -45,7 +45,7 @@ that a document store has very poor performance with queries it was not
 designed for.  In Figure 4.2, for example, a photo blog's database can 
 retrieve a complete blog post and its topical tags with a simple 
 key-value lookup, but to query a tag and find all related blog posts would
-require a full scan of every record in the entire database. [^indexes]
+require a full scan of every record in the database. [^indexes]
 
 [^indexes]: At least in theory.  In practice, the leading document store 
     databases, such as MongoDB,
@@ -103,8 +103,8 @@ Microsoft, Teradata, and other database vendors.  Even non-programmers
 can take advantage
 of their expertise by running their analyses as database queries.
 
-In order to leverage a query optimizer, queries are written in **declarative
-languages**, the best known such language being SQL.  In a declarative 
+In order to leverage a query optimizer, queries are written in declarative
+languages, the best known such language being SQL.  In a declarative 
 language, you don't write instructions for the computer to follow, but
 instead describe the output you want.  A query optimizer can interpret
 this description and then decide for itself how to process the query.
@@ -194,8 +194,8 @@ Overall, my claim is that databases allow you to leverage the hard work
 of decades-long research by developers to execute complicated analyses
 without having to write complex queries.  This fact is rarely even hinted
 at in introductory database textbooks, because so much attention is given
-to databases as simple engines for storing and retrieving  
-data with the CRUD (create, read, update, delete) operations.  A few examples 
+to databases as simple engines for storing and retrieving data with the 
+CRUD (create, read, update, delete) operations.  A few examples 
 of analyses that can be done very simply within
 databases are "pivoting" a data table, joining an external or temporary
 table to enrich an analysis, and multiplying sparse matrixes with SQL.
@@ -357,7 +357,7 @@ do this very well, and databases use tricks like indexing to speed up these
 kinds of search-and-retrieve operations.  However, for some Big Data analysis, 
 what you want is to crunch the entire database at once.  When Google updates
 its search engine index, for example, it may analyze literally the entire
-contents of the World Wide Web.  When Amazon or Netflix update their
+contents of the (known) World Wide Web.  When Amazon or Netflix update their
 recommendation engines, they may analyze the entire history of customer
 transactions in one big process.  And so on.
 
@@ -473,8 +473,8 @@ stored procedures, and this is one of the reasons we used to be taught
 not to use them.  The theory is that, without stored procedures, you could
 migrate your database from Microsoft to Oracle or IBM to Teradata on
 a moment's notice, but once you start writing procedures you're locked
-in to a proprietary platform.  The trade-off of costs and benefits will
-depend on your situation.
+in to a proprietary platform.  Whether this risk is great enough to be
+compelling will depend on your situation.
 
 ### Views
 
@@ -511,8 +511,7 @@ processing logic outside of the database.  On the other hand, however, I have
 shown that databases can in fact be powerful and elegant engines for
 analytical processing, can make complex data processing tasks appear simple,
 and that storing logic within the database has benefits that may offset the
-risk of vendor lock-in.  We will return to relational databases, specifically,
-in Chapters 9 and 10.
+risk of vendor lock-in.
 
 ## References & Recommended Reading
 

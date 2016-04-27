@@ -50,7 +50,7 @@ systematically better decision making over time.
 data analysis capabilities into the front-line systems used by employees
 and customers on the front lines of a business.  Think of the 
 recommendation engines on e-commerce websites that tell you about
-products you might like to buy, or the machine at the grocery store
+products you might enjoy, or the machine at the grocery store
 that prints out coupons for just the things you might like to buy. The
 people who use these systems may not know about the sophisticated
 data analysis that makes them work, but the developers of such systems
@@ -159,8 +159,8 @@ As a potential solution, Bush imagined a future system called the "**memex**"
 which would store a library of books and articles as well as the owner's own
 notes and correspondence on futuristic microfilm, allowing him to call up
 any file at will.  The most fascinating feature he envisioned was that the
-memex would allow users would be able to define "associative trails" between 
-documents, linking this book to that article to another conversation.  These 
+memex would allow users to define "associative trails" between 
+documents, linking this book to that article to the other conversation.  These 
 "trails" could then be shared with other memex users and linked to other 
 trails.  These associations might not be as complex or as immediate as
 human pattern recognition, but they would have one advantage over the brain:
@@ -198,10 +198,10 @@ protocol and a hypertext technology for the open Internet that he called the
 WorldWideWeb.  
 
 Originally intended to host scientific papers and allow them
-to link to other papers in their bibliographies, this became the Web we
+to link to other papers via their bibliographies, this became the Web we
 know today with the invention of graphical web browsers around 1995. Also 
-in 1995, Ward Cunningham invented the first hypertext system that could
-be directly edited by its users: the wiki.  By now, a generation has
+in 1995, a programmer named Ward Cunningham invented the first hypertext system that could
+be directly edited by its users: the **wiki**.  By now, a generation has
 grown up familiar with, and having the expectation of, being able to
 navigate from one piece of information to the next by associative links.
 
@@ -337,7 +337,7 @@ data to business value.
   Data Science Team. Paper presented at pre-ICIS SIGDSA Workshop, Auckland, NZ.
 - Jurney, R. (2014). Agile Data Science. Sebastopol, CA: O'Reilly.
 - Li, M. (2014). The Question to Ask Before Hiring a Data Scientist. 
-  [Link](http://blogs.hbr.org/2014/08/the-question-to-ask-before-hiring-a-data-scientist/)
+  [[Link]](http://blogs.hbr.org/2014/08/the-question-to-ask-before-hiring-a-data-scientist/)
 - Tamm, T., Seddon, P., & Shanks, G. (2013). Pathways to Value From Business 
   Analytics. Paper presented at ICIS 2013, Milan.
 - Tufte, E. (2001). The Visual Display of Quantitative Information. Cheshire,

@@ -81,9 +81,8 @@ responses.  The requests often include metadata ("headers") which may
 identify the person who made the request and the browser version he is 
 using.  Response headers may include the date of the response, and if 
 there is a message body such as a web page, will tell you the type of 
-data to expect, and its length.  Several other headers may be useful to 
-us in building systems to communicate data over the Internet, and I will 
-discuss them below.
+data to expect, and its length.  Several other headers may be useful for 
+different kinds of tasks.
 
 ##Communicating in Data
 
@@ -129,7 +128,7 @@ nature of the Internet rather than adapting to it.  For example:
 ##REST to the Rescue
 
 A more mature solution to the Internet's challenges is found in the 
-Representational State Transfer or **REST**} architecture, first proposed 
+Representational State Transfer or **REST** architecture, first proposed 
 by Roy Fielding in a dissertation at U.C. Irvine in 2000.  Instead of fighting 
 against the characteristics of HTTP and the Internet, this architecture is 
 designed to take advantage of them.
@@ -254,15 +253,15 @@ way, as they are its verbs.
 
 An initial sketch of the API design might include the following:
 
-`GET /users`: List all users of the system (usernames and real names)
-
-`POST /users`: Create a new user
-
-`GET /users/{username}`: Retrieve all data about the specified user
-
-`GET /users/{username}/posts`: Retrieve all posts by this user
-
-`DELETE /users/{username}`: Delete the specified user account
+> `GET /users`: List all users of the system (usernames and real names)
+> 
+> `POST /users`: Create a new user
+> 
+> `GET /users/{username}`: Retrieve all data about the specified user
+> 
+> `GET /users/{username}/posts`: Retrieve all posts by this user
+> 
+> `DELETE /users/{username}`: Delete the specified user account
 
 And similar methods would be documented for URL endpoints for messages, 
 hashtags, and other data in the application.  After the API endpoints, which 
@@ -272,19 +271,19 @@ your user may only want the last 10, or only want messages posted during the
 last month.  In a URL, these parameters follow a `?` and are separated 
 by `&`.  For example:
 
-`GET /messages?limit=10`: Retrieve the last 10 messages.
-
-`GET /messages?limit=10&offset=10`: Retrieve 10 messages *after* the first 
-10 (in other words, retrieve "page 2" of messages).
-
-`GET /messages?month=January&year=2016`: Retrieve all messages from 
-January 2016.
+> `GET /messages?limit=10`: Retrieve the last 10 messages.
+> 
+> `GET /messages?limit=10&offset=10`: Retrieve 10 messages *after* the first 
+> 10 (in other words, retrieve "page 2" of messages).
+> 
+> `GET /messages?month=January&year=2016`: Retrieve all messages from 
+> January 2016.
 
 Some other good practices in setting up your API are to choose a good 
 URL root.  You could use something like `http://www.mysite.com/api/*` 
-(the `*` is where your consumers put the  specified URL endpoints), or 
-you could use `http://api.mysite.com/*`.  You may also want to include 
-a version number, so that if you change the API, consumers can still 
+, or you could use `http://api.mysite.com/*`(the `*` is where your consumers 
+put the  specified URL endpoints).  You may also want to include 
+a version number, so that if you change the API later, consumers can still 
 use the old version.  For example: `http://api.mysite.com/v1/*`.
 
 Your API should also be well-documented so that your users don't have to 

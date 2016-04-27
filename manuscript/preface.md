@@ -21,21 +21,21 @@ science to business value.  The three pathways to value then, are:
   
 ![Fig. 0.1: Pipelines from Data to Business Value](/images/both_pipelines_2.png)
 
-Most of the attention in the industry has been on the data scientists who use
+Most of the attention in the industry has been on the **data scientists** who use
 powerful algorithms and visualization tools to develop new ways of analyzing
 business data and find new insights.  This is challenging, creative work, but
-by itself it only produces one-time benefits.  There is, I believe, an
+by itself it only produces one-off benefits.  There is, I believe, an
 equally important new role that has received much less attention than it 
-deserves: that of the data engineer (or data wrangler) who can take a new
+deserves: that of the **data engineer** (or **data wrangler**) who can take a new
 model or algorithm and automate it, make it repeatable and accessible to
 non-expert users such as managers and customers.  These unsung heroes create
-*analytical systems*, also called "data products", and are critical to making
+*analytical systems*, also called **data products**, and are critical to making
 the benefits of data analysis accessible throughout the organization.
 
 As a colleague of mine is fond of pointing out, the reason *Star Trek*'s 
-science officer Spock can be so effective is that he works on the bridge and
-not in a laboratory below decks.  Some data engineer, probably an unnamed 
-red shirt, developed the systems that gave him instant access to sensor data
+science officer Spock can be so effective is that he works on the bridge 
+rather than in a laboratory below decks.  Some data engineer, probably an unnamed 
+red shirt, developed the systems that give him instant access to sensor data
 and analytics.
 
 In this course, we will survey the skills and knowledge areas used by data
@@ -78,8 +78,9 @@ or data wrangler should proceed in stages:
   tools, advanced automation of data ingest and preparation, and real-time
   data stream management.
 
-This conceptual sequence is a work in progress, and it will shape the 
-organization of my course, CIS 355.
+This conceptual sequence is a work in progress, developed while teaching
+a course in data management, CIS 355, at Arizona State University.  To the
+students who helped me to develop this material, thank you!
 
 ## References  & Recommended Reading
 
@@ -87,9 +88,8 @@ organization of my course, CIS 355.
   Data Science Team. Paper presented at pre-ICIS SIGDSA Workshop, Auckland, NZ.
 - Davenport, T. H., & Patil, D. J. (2012). Data Scientist: The Sexiest Job Of 
   the 21st Century. Harvard Business Review, 90(10), 70-76.
-- Driscoll, M. E. (2013?). let us now praise data engineers. Retrieved from
-  [http://medriscoll.com](
-  http://medriscoll.com/post/49783223337/let-us-now-praise-data-engineers).
+- Driscoll, M. E. (2013?). let us now praise data engineers. 
+  [[Link]](http://medriscoll.com/post/49783223337/let-us-now-praise-data-engineers).
 - Jurney, R. (2014). Agile Data Science. Sebastopol, CA: O'Reilly.
 - Tamm, T., Seddon, P., & Shanks, G. (2013). Pathways to Value From Business 
   Analytics. Paper presented at ICIS 2013, Milan.

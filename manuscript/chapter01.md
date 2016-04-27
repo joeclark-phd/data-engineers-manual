@@ -15,7 +15,7 @@ Your computer is a physical machine, made of atoms and charged with
 electrons. It is easy to lose sight of the artifact and think of the computer only
 in symbolic terms: windows, menus, programs, and so on. One component
 of your computer is "memory" (or RAM) which holds---in the form of
-electrical impulses|the instructions and data that your computer is currently
+electrical impulses---the instructions and data that your computer is currently
 processing. This memory fades away when the machine is powered off.
 Consequently, for you to be able to do any non-ephemeral work, the computer
 needs some means of saving its state or its output to **persistent storage**.
@@ -30,7 +30,7 @@ mind that these systems have material properties and are affected by laws
 of physics; they are more than just software. The physical constraints on
 hard drives, processors, and networks have driven the evolution of relational
 databases, analytical systems, and cluster-based computing for big data. We
-will consider these constraints more in Chapter 8, but take a look at the
+will consider these constraints more later, but take a look at the
 videos I've recommended (at the end of this chapter) by Andrew Blum and
 Genevieve Bell---both are compelling talks about the unexpected and often
 overlooked physical and human aspects of big data and the Internet.
@@ -51,13 +51,13 @@ measures of data.[^2]
     nonillion bytes---a "hellabyte".  I'm all for it.  We're going to have to 
     start calling it *something* soon.
 
-![Fig. 1.1: Measures of Data](/images/kilomegagigabytes.png)
+![Table 1.1: Measures of Data](/images/kilomegagigabytes.png)
 
 The bits and bytes on your disk would simply be electronic gibberish if
 your operating system didn't know how to read them. Fortunately, these
 bytes are structured according to a **file system** so your operating system
-(e.g. Windows, Mac OS, or Linux) can read them and interpret the data
-as files. A file is just a chunk of bytes on disk that is given a name and a
+(e.g. Windows, Mac OS, Linux, Android, etc.) can read them and interpret the data
+as files. A **file** is just a chunk of bytes on disk that is given a name and a
 place in the structure of folders or directories. In this sense, programs like
 Microsoft Excel are files, and so are the spreadsheet documents they allow
 you to create. The former are files that contain instructions for the computer,
@@ -73,6 +73,7 @@ So who sets the standards about data formats? Anyone can, but Microsoft's
 standards are a lot more likely to be taken seriously by the market! If they
 change the way they save a spreadsheet file, you can bet that other companies
 will quickly update their software to be able to read the new file format.
+
 Files are very versatile. They can big or small, can encode text, images,
 sound, video, and other types of data. You can transfer them from one disk
 to another, e-mail them to colleagues, and share them on the Internet. But
@@ -175,8 +176,8 @@ better way to manage data. The solutions they developed were **databases**.
 
 A database is defined by Oxford as "a structured set of data held in a
 computer, especially one that is accessible in various ways".[^4] This is a 
-good enough definition. A database management system (DBMS) is the software
-that both structures the data, and makes it accessible. From here on out,
+good enough definition. A **database management system** (DBMS) is the software
+that both structures the data and makes it accessible. From here on out,
 when I use the word "database", I am usually referring to the whole package
 (database and DBMS), as this is the common usage.
 
@@ -197,7 +198,7 @@ create, read, update, and delete[^6] data.
 The term **metadata** is often defined as "data about data" although I
 think "information about data" is more accurate. What it means is that,
 instead of just storing the data, the database can also inform its users
-about what the data is. If the data is `4809650024`, the metadata may be
+about what the data *is*. If the data is `4809650024`, the metadata may be
 `Professor Clark's phone number`. There are many types of databases
 and therefore many types of metadata---we will explore these more beginning
 in chapter 3---but the point is that users of a database can make some sense
@@ -215,7 +216,7 @@ is the structured query language SQL.[^7] SQL has four main commands:
 database, and `SELECT`, which is used to **query** the database, in other words,
 to request data for some purpose. Dialects of SQL with minor differences are
 used by most of the long-established database brands on the market---Oracle,
-IBM DB2, Microsoft SQL Server, PostgreSQL, MySQL, etc---so it has the
+IBM DB2, Microsoft SQL Server, PostgreSQL, MySQL, Teradata, etc.---so it has the
 benefit of being an industry standard.
 
 [^7]: The name of SQL may be pronounced "sequel" or "ess, queue, ell"
@@ -243,7 +244,7 @@ replication and backups. Databases can coordinate the actions of multiple
 concurrent users and enforce atomicity and integrity of transactions so that
 versions of the data do not get mixed up. New types of databases have
 emerged in the past few years to deal with the demands of "big data" and we
-will discuss them in this course. But the two universals are that databases
+will discuss them in this book. But the two universals are that databases
 can describe themselves via metadata, and grant program-data independence
 via stable APIs such as---but not limited to---SQL.
   
@@ -279,8 +280,8 @@ data models need to be employed at the same time for different purposes.
 A data engineer therefore needs to know about how data is accessed and
 shared between users and applications over networks and in computer clusters.
 He needs to know about the different types of data models and which tasks
-they are best suited for. He needs to know about the new challenges of "big
-data" and the tools and techniques that are being developed to work with
+they are best suited for. He needs to know about the new challenges of "Big
+Data" and the tools and techniques that are being developed to work with
 it. And fnally he needs to integrate a variety of data management solutions
 into a data "pipeline", automate it, and maintain it. The remainder of this
 book surveys each of these knowledge areas.

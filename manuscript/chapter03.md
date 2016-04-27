@@ -12,7 +12,7 @@ models.  Databases introduce unique challenges for operations and maintenance.
 
 A database is a system that **persists** data for future retrieval.  Since 
 data is such a vital resource, databases are an important part of the 
-infrastructure of a business.  Other software applications depend on 
+**infrastructure** of a business.  Other software applications depend on 
 databases for access to the data they need.  This means databases must deal 
 with two particularly challenging constraints: (1) they cannot lose the data, 
 and (2) they cannot be shut down.  Designing and maintaining a database is 
@@ -22,11 +22,11 @@ the ocean.
 Compared to other kinds of programmers, database developers operate under an 
 important constraint: the data sticks around.  If you're programming some
 other kind of system, such as a shell script, a web page, or a game, you can
-throw away and re-write your code as many times as you like, iterating on new 
+discard and re-write your code as many times as you like, iterating on new 
 features and bug fixes, re-running and testing your code as many times as
 you like.  But data in a database persists from one run to the next.  If you
-want to change the structure of the data, you cannot just implement changes 
-for future data but must also carefully bring the *existing* data up-to-date
+want to change the structure of the data, you cannot just implement those changes 
+for *future* data but must also carefully bring the *existing* data up-to-date
 with the new structure.  
 
 Consequently, decisions made in the initial
@@ -48,7 +48,7 @@ very simple rules:
 What it means to call this an **abstraction** is that application developers, 
 or other users working with the data, will simply interact with tables, rows, 
 and columns.  The underlying implementation of data storage on disk will be 
-handled by the database management system and will be invisible to users.  One 
+handled by the database management system and will be invisible to users.  A 
 data table could be physically implemented on one disk or distributed across 
 multiple disks, partitioned to keep rows together or to keep columns together, 
 stored in the order data was added or in numerical or alphabetical order---but 
@@ -56,13 +56,13 @@ all of these details would be hidden from the user.
 
 Databases are, however, what computer scientists call "leaky 
 abstractions".  In actual practice, there are choices you can make in physical 
-implementation that will make a difference in terms of performance.  Since 
-these choices are fundamental to the emergence of analytical databases such 
-as data warehouses, I will write more about them in Chapters 8-10.
+implementation that will make a difference in terms of performance.  These 
+choices are fundamental to understanding the emergence of analytical databases such 
+as data warehouses, and Big Data platforms like Hadoop.
 
 To free the developers and users of data-driven applications from working 
 directly with physical data storage on disk, databases offer APIs to enable 
-database **queries**.  These APIs can be HTTP web services, accessible over
+database queries.  These APIs can be HTTP web services, accessible over
 the Internet, or programming language libraries, but the most well-known API 
 for accessing databases is the **SQL** query language used to query the
 relational model.  
@@ -90,15 +90,15 @@ As the user of a relational database, you will have to learn about the
 relational modeling, and the basics of SQL, but you will not need to know 
 how the database will retrieve the data from disk, or what algorithms it uses 
 to sort and filter the data to produce the result you requested.  In addition 
-to `SELECT`, there are SQL queries for creating, updating, and deleting data.  
-Along with "reading", these are called the **CRUD operations** and almost 
-any database needs to support them.  (More on SQL in Chapters 9-10.)
+to `SELECT`, there are SQL queries for creating, updating, and deleting 
+data.  Along with "reading", these are called the **CRUD operations** and almost 
+any database needs to support them.
 
 ## Databases in Applications
 
 Typically we are not writing ad hoc SQL queries directly through the database, 
 but rather using software **applications**.  A data-driven application 
-(or "app", if you really must), is a piece of software that retrieves or 
+(or "app", if you really must use that word), is a piece of software that retrieves or 
 processes data from a database for some purpose of the user.  These 
 applications serve as "front ends" and depend on the database as a 
 "back end" technology.  Therefore, the database must run as a 
@@ -132,6 +132,7 @@ of knowledgeable users.  The users are running sophisticated software that
 accesses the database through the network.  For example, they might be 
 analysts using Excel, Tableau, Python, or data mining software on their 
 desktop computers to visualize or mine the data stored in the database.  
+
 The database server is in charge of the **storage logic** of how data is 
 persisted to disk, while most of the rest of the processing happens on 
 client computers.  An architecture like this allows expert users to select 
@@ -139,7 +140,7 @@ or create their own tools, but does not scale up well to thousands or
 millions of users.  Only trusted users, who know enough not to accidentally 
 corrupt the data, should be given this kind of direct access.
 
-As a data scientist or data engineer, this might be the sort of environment
+As a data scientist or data engineer, this might be the sort of **data discovery** environment
 in which you munge data and develop new analytical models, but when you want
 to make analytics available to a broader user base, you'd want a "production"
 environment such as the thin-client, 3-tier architecture diagrammed in Figure
@@ -225,11 +226,12 @@ new information.
 All in all, the relational model is a powerful and versatile way to model 
 data.  So why do we need any others?  
 
-Two broad categories of reasons are performance at scale, and ease of use.  As 
-we will see later, analytics applications such as business 
-intelligence systems have unique needs.  These systems are intended to allow 
+Two broad categories of reasons are performance at scale, and 
+ease of use.  Analytics applications such as business 
+intelligence systems have unique needs: they are intended to allow 
 people who are not experts (in database technology) to summarize, slice, 
-and dice large amounts of data.  Relational databases at the enterprise 
+and dice large amounts of data, and must support queries that aggregate 
+many rows at once without bogging down.  Relational databases at the enterprise 
 level can have dozens or even hundreds of tables; therefore, writing ad 
 hoc SQL to analyze the data can be extremely complex, beyond the capabilities 
 of a casual user.  Also, the joining of numerous tables into a query can slow 
@@ -246,6 +248,8 @@ data, each model features one large "fact" table and a number of smaller
 by product type, etc.  The goals of dimensional modeling are fast query 
 performance, and simple query structure for casual database users.
 
+![Table 3.3: Types of data models](/images/datamodeltypes.png)
+
 Another driver behind the move away from relational databases is to 
 simplify application development for the Internet.  One of the complexities 
 of using a relational model is that intuitive "objects" or aggregates of 
@@ -258,8 +262,6 @@ developers would find it simpler to just store the entire aggregate in one
 place.  This is known as the **impedance mismatch** problem: the way data 
 is modeled in computer memory when our software is running does not match 
 the way it must be modeled when we store it to disk.
-
-![Table 3.3: Types of data models](/images/datamodeltypes.png)
 
 As a result, in recent years we have seen a rapid growth 
 of **aggregate-oriented databases** such as MongoDB.  In aggregate-oriented 
@@ -315,9 +317,6 @@ references to learn more. See Recommended Reading, below.
   
 - Redmond, E., & Wilson, J. (2012). Seven Databases in Seven Weeks. The
   Pragmatic Bookshelf.
-  
-- "Modern Databases" by Eric Redmond, co-author of 
-  above. https://youtu.be/G7-OGEYCMxQ
 
 - Hoffer, J., Topi, H., & Ramesh, V. (2014). Essentials of Database 
   Management.  Pearson.
