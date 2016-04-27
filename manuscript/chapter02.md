@@ -235,9 +235,9 @@ with in the future.
 ## References & Recommended Reading
 
 - A *hilarious* student-produced video on data serialization with 
-  XML. https://youtu.be/kfVPLSj6Rqw
+  XML. [[Link]](https://youtu.be/kfVPLSj6Rqw)
   
-- "Character Encoding", Wikipedia. https://en.wikipedia.org/wiki/Character_encoding
+- "Character Encoding", Wikipedia. [[Link]](https://en.wikipedia.org/wiki/Character_encoding)
 
 - Manoochehri, M. (2014). Data Just Right: Introduction to Large-Scale Data &
   Analytics.  Addison-Wesley.

@@ -518,10 +518,10 @@ risk of vendor lock-in.
 - Codd, E. F. (1970). A Relational Model of Data for Large Shared Data 
   Banks.  *Communications of the ACM 13*(6), pp. 377-387.
 
-- "Data Manipulation at Scale".  MOOC by Bill Howe of U. Washington.  Via
-  [Coursera](https://www.coursera.org/learn/data-manipulation).
+- "Data Manipulation at Scale".  MOOC by Bill Howe of U. Washington.  
+  Coursera. [[Link]](https://www.coursera.org/learn/data-manipulation)
   
 - Redmond, E., & Wilson, J. (2012). Seven Databases in Seven Weeks. The
   Pragmatic Bookshelf.
 
-- "MapReduce".  Wikipedia.  https://en.wikipedia.org/wiki/MapReduce
+- "MapReduce".  Wikipedia.  [[Link]](https://en.wikipedia.org/wiki/MapReduce)

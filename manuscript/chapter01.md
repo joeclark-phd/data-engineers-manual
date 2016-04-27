@@ -289,7 +289,7 @@ book surveys each of these knowledge areas.
 ## References & Recommended Reading
 
 - "What is the Internet, really?", TED talk by Andrew Blum, author of "Tubes".
-  https://youtu.be/XE_FPEFpHt4. (Or see this longer version of the talk: 
-  https://youtu.be/28hzKbcLlWg.)
+  [[Link]](https://youtu.be/XE_FPEFpHt4). (Or 
+  this longer version of the talk: [[Link]](https://youtu.be/28hzKbcLlWg).)
 - "The Secret Life of Big Data", keynote talk at Supercomputing 2013 by 
-  Genevieve Bell of Intel.  https://youtu.be/CNoi-XqwJnA
+  Genevieve Bell of Intel. [[Link]](https://youtu.be/CNoi-XqwJnA)

@@ -313,7 +313,7 @@ references to learn more. See Recommended Reading, below.
 
 ## References & Recommended Reading
 
-- "Introduction to NoSQL" by Martin Fowler.  https://youtu.be/qI_g07C_Q5I
+- "Introduction to NoSQL" by Martin Fowler.  [[Link]](https://youtu.be/qI_g07C_Q5I)
   
 - Redmond, E., & Wilson, J. (2012). Seven Databases in Seven Weeks. The
   Pragmatic Bookshelf.
@@ -322,4 +322,4 @@ references to learn more. See Recommended Reading, below.
   Management.  Pearson.
   
 - Kim, J. (2014). "Why I Love Databases." 
-  https://medium.com/@jeeyoungk/why-i-love-databases-1d4cc433685f
+  [[Link]](https://medium.com/@jeeyoungk/why-i-love-databases-1d4cc433685f)
