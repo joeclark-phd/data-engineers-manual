@@ -329,7 +329,13 @@ term that doesn't have a strict definition. Martin Fowler's video on NoSQL,
 and the book *Seven Databases in Seven Weeks*, are both excellent 
 references to learn more. See Recommended Reading, below.
 
-![Table 3.4: Strengths of different data modeling approaches](/images/datamodelprocon.png)
+{title="Table 3.4: Strengths of different data modeling approaches"}
+| Modeling Approach | Strengths | Where to Use |
+|----------------------------------------------|
+| Relational model | Data integrity; complex ad hoc queries possible; minimal disk usage | Operational information systems where data is sensitive or critical |
+| Dimensional modeling | Intuitive for non-expert database users; fast read-only performance | Analytical databases for business intelligence |
+| Aggregate-oriented | Data models in applications match data models on disk; data queried together is stored together; schemas can change | Web and mobile applications, particularly where natural aggregates (articles, profiles, shopping carts) are present
+| Graph-oriented | May be naturally well suited to queries that span social networks | Experimental software for social networks and social graph analytics |
 
 ## References & Recommended Reading
 
