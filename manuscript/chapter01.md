@@ -51,8 +51,14 @@ measures of data.[^2]
     nonillion bytes---a "hellabyte".  I'm all for it.  We're going to have to 
     start calling it *something* soon.
 
-![Table 1.1: Measures of Data](/images/kilomegagigabytes.png)
+{title="Table 1.1: Measures of data size"}
+| # of bytes | which equals | common term | abbreviation |
+|--------------------------------------------------------|
+| 2^10^ | 1024 | kilobyte | KB |
+| 2^20^ | 1,048,576 | megabyte | MB |
+| 2^30^ | 1,073,741,824 | gigabyte | GB |
 
+    
 The bits and bytes on your disk would simply be electronic gibberish if
 your operating system didn't know how to read them. Fortunately, these
 bytes are structured according to a **file system** so your operating system
