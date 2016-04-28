@@ -183,10 +183,10 @@ numbers, and delete the old ones you never used.
 {title="Table 5.1: CRUD methods in HTTP"}
 | HTTP method | CRUD operation | Meaning |
 |----------------------------------------|
-| `GET` | Read | Fetch data without altering it. |
+| `GET` | Read | Fetch data without altering anything on the server. |
 | `POST` | Create | Add this new data to the server, creating the resource. |
 | `PUT` | Update | Replace this existing resource with this (updated) data. |
-| `DELETE` | Delete | Remove this resource from the server. |
+| `DELETE` | Delete | Remove the specified resource from the server. |
  
 Allowing our users (humans as well as software applications) to directly 
 access data resources also helps us to achieve statelessness, and to 
