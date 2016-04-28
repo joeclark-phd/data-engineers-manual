@@ -184,7 +184,12 @@ client side, and mobile applications tend to be "fatter" than websites.  With
 a little imagination, you can further generalize 
 these concepts to four-tier or *n*-tier application architectures. 
 
-![Table 3.2: Types of logic in data-driven applications](/images/3-tiers.png)
+{title="Table 3.2: Types of program logic in data-driven applications"}
+| Logic | Features | state | Location |
+|-------------------------------------|
+| Presentation logic | Input and output; visual presentation of data | Client-side software |
+| Processing logic | Business rules, data processing and management | "Fat client" or application server such as a web server |
+| Storage logic | Data persistence, optimization, and retrieval | Database server |
 
 ## Choices in Logical Database Design
 
