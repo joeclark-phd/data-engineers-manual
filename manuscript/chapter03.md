@@ -262,7 +262,13 @@ data, each model features one large "fact" table and a number of smaller
 by product type, etc.  The goals of dimensional modeling are fast query 
 performance, and simple query structure for casual database users.
 
-![Table 3.3: Types of data models](/images/datamodeltypes.png)
+{title="Table 3.3: Types of data models"}
+| Modeling Approach | Brief Definition |
+|--------------------------------------|
+| Relational model | Numerous tables corresponding to atomic, non-redundant entity types, with relationships strictly defined by keys. Complex queries may join many tables. |
+| Dimensional modeling | Each model (schema) has one large "fact" and several small "dimension" tables. Queries allow filtering and summarizing the fact *by* the dimensions. |
+| Aggregate-oriented | Arbitrary data structures are stored without breaking them up, addressed with unique keys. Data models may be document-oriented, understanding the data as JSON-like structures, or simple key-value stores. |
+| Graph-oriented | Data modeled as a network with nodes and edges. No tables. |
 
 Another driver behind the move away from relational databases is to 
 simplify application development for the Internet.  One of the complexities 
