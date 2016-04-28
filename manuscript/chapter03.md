@@ -133,7 +133,7 @@ some of the data architecture concepts that emerged on the Internet, such
 as the service-oriented architecture that will be discussed 
 in Chapter 5.
 
- - TODO: [Fig. 3.1. Diagram of fat-client, 2-tier application]
+![Fig. 3.1: A fat-client, 2-tier application](/images/2tierapp.png)
 
 Figure 3.1 depicts an example of a two-tier, fat client architecture.  In 
 the example, the database server supports what is probably a small workgroup 
@@ -155,7 +155,7 @@ to make analytics available to a broader user base, you'd want a "production"
 environment such as the thin-client, 3-tier architecture diagrammed in Figure
 3.2.
 
- - TODO: [Fig. 3.2. Diagram of thin-client, 3-tier application]
+![Fig. 3.2: A thin-client, 3-tier application](/images/3tierapp.png)
 
 This is a simple architecture that today underlies most websites, mobile 
 applications, and other software programs intended for a large user base.  In 
