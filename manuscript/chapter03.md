@@ -184,8 +184,8 @@ client side, and mobile applications tend to be "fatter" than websites.  With
 a little imagination, you can further generalize 
 these concepts to four-tier or *n*-tier application architectures. 
 
-{title="Table 3.2: Types of program logic in data-driven applications"}
-| Logic | Features | state | Location |
+{title="Table 3.2: Types of program logic in data-driven applications", width="wide"}
+| Logic | Features | Location |
 |-------------------------------------|
 | Presentation logic | Input and output; visual presentation of data | Client-side software |
 | Processing logic | Business rules, data processing and management | "Fat client" or application server such as a web server |
@@ -262,7 +262,7 @@ data, each model features one large "fact" table and a number of smaller
 by product type, etc.  The goals of dimensional modeling are fast query 
 performance, and simple query structure for casual database users.
 
-{title="Table 3.3: Types of data models"}
+{title="Table 3.3: Types of data models", width="wide"}
 | Modeling Approach | Brief Definition |
 |--------------------------------------|
 | Relational model | Numerous tables corresponding to atomic, non-redundant entity types, with relationships strictly defined by keys. Complex queries may join many tables. |
@@ -329,7 +329,7 @@ term that doesn't have a strict definition. Martin Fowler's video on NoSQL,
 and the book *Seven Databases in Seven Weeks*, are both excellent 
 references to learn more. See Recommended Reading, below.
 
-{title="Table 3.4: Strengths of different data modeling approaches"}
+{title="Table 3.4: Strengths of different data modeling approaches", width="wide"}
 | Modeling Approach | Strengths | Where to Use |
 |----------------------------------------------|
 | Relational model | Data integrity; complex ad hoc queries possible; minimal disk usage | Operational information systems where data is sensitive or critical |
