@@ -180,7 +180,13 @@ phone---a simple database.  You need to be able to add new contacts, browse
 them to find one you want to call, update them when friends get new phone 
 numbers, and delete the old ones you never used.
 
-![Table 5.1: CRUD operations](/images/crud.png)
+{title="Table 5.1: CRUD methods in HTTP"}
+| HTTP method | CRUD operation | Meaning |
+|----------------------------------------|
+| `GET` | Read | Fetch data without altering it. |
+| `POST` | Create | Add this new data to the server, creating the resource. |
+| `PUT` | Update | Replace this existing resource with this (updated) data. |
+| `DELETE` | Delete | Remove this resource from the server. |
  
 Allowing our users (humans as well as software applications) to directly 
 access data resources also helps us to achieve statelessness, and to 
