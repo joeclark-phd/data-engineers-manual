@@ -31,7 +31,7 @@ of the key-value data model.
     [Wikipedia](https://en.wikipedia.org/wiki/Hash_function) for more on 
     hash functions.
 
-<fig 4.1. a key-value query: ex. from Riak>
+![Fig. 4.1: A key-value query is straightforward](/images/kvquery.png)
 
 A document store is a kind of tree structure, not unlike the **hierarchical
 databases** that were dominant before the invention of relational databases
@@ -53,7 +53,7 @@ require a full scan of every record in the database. [^indexes]
     borrowed from the relational model.  Most commercial databases are 
     hybrids of these categories in some ways.
 
-<fig 4.2, two queries against a document store>
+![Fig. 4.2: Two queries against a document store](/images/dsqueries.png)
 
 The relational model was proposed by E. F. Codd with this problem in mind.
 Its solution is to provision one data table for every "entity type" in the 
@@ -65,7 +65,7 @@ which tables to join, and which criteria to select data by, they can take any
 entity they like as the "starting point" without sacrificing efficiency. The
 trade-off is that designing the data model becomes much more complicated.
 
-<fig 4.3,same two queries across a relational database> 
+![Fig. 4.3: The same two queries against a relational database](/images/3nfqueries.png)
 
 In figure 4.3, the same two queries related to photo blogs are depicted but
 the data model is relational.  To find all the tags associated with a blog
@@ -111,7 +111,7 @@ this description and then decide for itself how to process the query.
 
 ### Example using relational algebra
 
-<fig 4.4 sample database>
+![Fig. 4.4: Diagram of sample database](/images/samplestudentdb.png)
 
 To illustrate the role of a query optimizer in a relational database,
 consider a database of student enrollment in university courses, 
