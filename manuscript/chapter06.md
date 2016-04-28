@@ -239,7 +239,7 @@ perhaps form new hypotheses about it before rushing to confirm their
 prior theories.  He invented tools like the box-and-whisker plot to allow
 researchers to see the distribution of their data and identify outliers.
 
-![Fig. 6.2: Example box-and-whisker plot (from Wikipedia)](/images/boxplot.png)
+![Fig. 6.2: Example box-and-whisker plot](/images/boxplot.png)
 
 As computer technology advanced, scientists and businesspeople found
 themselves working with bigger and bigger sets of data, and new inventions

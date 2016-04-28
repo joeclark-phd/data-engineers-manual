@@ -65,8 +65,6 @@ which tables to join, and which criteria to select data by, they can take any
 entity they like as the "starting point" without sacrificing efficiency. The
 trade-off is that designing the data model becomes much more complicated.
 
-![Fig. 4.3: The same two queries against a relational database](/images/3nfqueries.png)
-
 In figure 4.3, the same two queries related to photo blogs are depicted but
 the data model is relational.  To find all the tags associated with a blog
 post, the database firsts finds the relevant row of the POSTS table, filters
@@ -77,6 +75,8 @@ the appropriate row of the TAGS table, filter the associative table just to
 the rows that have the tag's `id` number, and then join it with the POSTS 
 table to get the titles.  This is somewhat slower than a key-value lookup,
 but much faster than a full scan of the database.
+
+![Fig. 4.3: The same two queries against a relational database](/images/3nfqueries.png)
 
 ## The Query Optimizer
 

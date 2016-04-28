@@ -41,16 +41,12 @@ Google's or Amazon's
 web server) and the server sends back a response (such as a web page, 
 image, or PDF).
 
-<todo: A diagram of the request/response process.>
-
 Every HTTP message has an initial line, which is different for requests and 
 responses, optional "headers" (which are metadata about the message), and 
 then the optional main body of the message, which may be any type of 
 data.  In the message body you can send text data like HTML (a web page), 
 XML, or JSON, or you can send binary data like pictures in PNG format, 
 documents in DOC or PDF format, and more.
-
-<todo: Illustration of typical request message>
 
 The initial line for an HTTP request includes a method, a URL, and the HTTP 
 version, for example:
