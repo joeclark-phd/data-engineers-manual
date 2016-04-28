@@ -75,7 +75,16 @@ been so convenient that even the popular new non-relational databases
 (nicknamed "**NoSQL**") have been developing their own declarative query 
 languages.
 
-![Table 3.1: Relational table of City data](/images/sqltable1.png)
+{title="Table 3.1: Relational table of City data"}
+| id# | city | state | population |
+|---------------------------------|
+| 1 | Los Angeles | CA | 3,880,000 |
+| 2 | Las Vegas | NV | 603,488 |
+| 3 | Phoenix | AZ | 1,510,000 |
+| 4 | Tucson | AZ | 526,116 |
+| 5 | Santa Fe | NM | 69,976 |
+| 6 | Salt Lake City | UT | 191,180 |
+| 7 | San Antonio | TX | 1,510,000 |
 
 Consider Table 3.1, a list of cities.  Perhaps they are where our customers 
 live.  If we wanted to know the names of the cities in Arizona, in order 

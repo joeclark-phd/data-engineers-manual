@@ -57,7 +57,11 @@ measures of data.[^2]
 | 2^10^ | 1024 | kilobyte | KB |
 | 2^20^ | 1,048,576 | megabyte | MB |
 | 2^30^ | 1,073,741,824 | gigabyte | GB |
-
+| 2^40^ | 1,099,511,627,776 | terabyte | TB |
+| 2^50^ | about a quadrillion | petabyte | PB |
+| 2^60^ | about a quintillion | exabyte | EB |
+| 2^70^ | about a sextillion | zettabyte | ZB |
+| 2^80^ | about an octillion | yottabyte | YB |
     
 The bits and bytes on your disk would simply be electronic gibberish if
 your operating system didn't know how to read them. Fortunately, these
