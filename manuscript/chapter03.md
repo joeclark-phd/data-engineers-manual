@@ -215,6 +215,8 @@ table) by customer #54321 (a reference to a row in the Customers table).  In
 this way, details of the product and customer are stored only once in the 
 database, despite participating in numerous orders.
 
+![Fig. 3.3: Example relational schema for "orders"](/images/orderschema1.png)
+
 At the time relational databases were introduced in the late 1970s, disk 
 space was extremely expensive.[^disk] By eliminating unnecessary redundancy, 
 the relational data model was an elegant solution that kept databases as 
@@ -262,6 +264,8 @@ data, each model features one large "fact" table and a number of smaller
 by product type, etc.  The goals of dimensional modeling are fast query 
 performance, and simple query structure for casual database users.
 
+![Fig. 3.4: Example dimensional schema for retail sales](/images/starschema1.png)
+
 {title="Table 3.3: Types of data models", width="wide"}
 | Modeling Approach | Brief Definition |
 |--------------------------------------|
@@ -282,6 +286,9 @@ developers would find it simpler to just store the entire aggregate in one
 place.  This is known as the **impedance mismatch** problem: the way data 
 is modeled in computer memory when our software is running does not match 
 the way it must be modeled when we store it to disk.
+
+![Fig. 3.5: The impedance mismatch problem](/images/impedance_mismatch.png)
+
 
 As a result, in recent years we have seen a rapid growth 
 of **aggregate-oriented databases** such as MongoDB.  In aggregate-oriented 
@@ -307,6 +314,8 @@ the risk that the rows of data needed for a particular query may be stored
 in separate disks all over your computer cluster.  With a document store 
 or key-value store, each aggregate is self-contained---the data that will 
 be retrieved together is all stored in the same place.
+
+![Fig. 3.6: Example aggregate-oriented model](/images/aggregate_oriented.png)
 
 Of course, this does not apply when one wants to conduct a query that cuts 
 across aggregates.  To give an example: if you create a document store for 
